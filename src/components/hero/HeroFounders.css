@@ -1,0 +1,226 @@
+.hero-founders {
+  position: relative;
+  overflow: hidden;
+  background: #030209;
+  padding: 7rem 0;
+}
+
+.hero-founders-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at top, rgba(123, 46, 255, 0.18), transparent 28%),
+    radial-gradient(
+      circle at bottom right,
+      rgba(78, 57, 255, 0.14),
+      transparent 38%
+    );
+}
+
+.hero-founders-container {
+  position: relative;
+  width: min(1280px, 90%);
+  margin: 0 auto;
+}
+
+.hero-founders-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.hero-founders-subtitle {
+  color: var(--primary-light);
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.hero-founders-title {
+  margin-top: 1.5rem;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 700;
+  letter-spacing: 0.35em;
+}
+
+/* ===========================
+   FOUNDERS LAYOUT
+=========================== */
+
+.hero-founders-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+}
+
+/* Each Founder */
+
+.founder-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6rem;
+}
+
+.founder-row.reverse {
+  flex-direction: row-reverse;
+}
+
+/* ===========================
+   IMAGE
+=========================== */
+
+.founder-image {
+  flex-shrink: 0;
+  width: 420px;
+}
+
+.founder-image img {
+  width: 100%;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 20px 60px rgba(123, 46, 255, 0.22);
+  transition: transform 0.3s ease;
+}
+
+.founder-image {
+  flex-shrink: 0;
+  width: 360px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+@media (min-width: 1280px) {
+  .founder-image {
+    width: 420px;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+/* image styles handled above (circular + zoom) */
+
+/* ===========================
+   TEXT
+=========================== */
+
+.founder-content {
+  flex: 1;
+}
+
+.founder-label {
+  color: var(--primary-light);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+}
+
+.founder-name {
+  margin-top: 1rem;
+  color: #fff;
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.founder-role {
+  margin-top: 1rem;
+  color: #a8a8a8;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.9rem;
+}
+
+.founder-description {
+  margin-top: 2rem;
+  max-width: 600px;
+  color: #c7c7c7;
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width: 1200px) {
+  .founder-row {
+    gap: 4rem;
+  }
+  .founder-image {
+    width: 360px;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-founders {
+    padding: 6rem 0;
+  }
+  .hero-founders-content {
+    gap: 5rem;
+  }
+  .founder-row,
+  .founder-row.reverse {
+    flex-direction: column;
+    text-align: center;
+    gap: 2.5rem;
+  }
+  .founder-image {
+    width: 100%;
+    max-width: 360px;
+  }
+  .founder-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-founders {
+    padding: 5rem 0;
+  }
+  .hero-founders-header {
+    margin-bottom: 4rem;
+  }
+  .hero-founders-title {
+    letter-spacing: 0.2em;
+    font-size: clamp(2.8rem, 10vw, 4rem);
+  }
+  .founder-name {
+    font-size: clamp(2.2rem, 8vw, 3.2rem);
+  }
+  .founder-description {
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-founders {
+    padding: 4rem 0;
+  }
+  .hero-founders-container {
+    width: 92%;
+  }
+  .hero-founders-title {
+    letter-spacing: 0.12em;
+    font-size: 2.5rem;
+  }
+  .founder-image {
+    max-width: 280px;
+  }
+  .founder-name {
+    font-size: 2rem;
+  }
+  .founder-role {
+    font-size: 0.8rem;
+  }
+  .founder-description {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,267 @@
+.navbar-shell {
+    --navbar-shell-inline: clamp(0.75rem, 1.15vw, 1.4rem);
+    --navbar-shell-block: clamp(0.45rem, 0.9vw, 0.9rem);
+    --navbar-row-gap: clamp(0.65rem, 1vw, 1.2rem);
+    --navbar-logo-height: clamp(4.4rem, 7.2vw, 7.25rem);
+    --navbar-logo-offset: clamp(0.15rem, 0.7vw, 1rem);
+    --navbar-pill-width: clamp(48rem, 68vw, 108rem);
+    --navbar-link-gap: clamp(0.6rem, 1.2vw, 1.8rem);
+    --navbar-link-font-size: clamp(0.66rem, 0.5vw + 0.45rem, 0.9rem);
+    --navbar-link-padding-inline: clamp(0.25rem, 0.45vw, 0.6rem);
+    --navbar-cta-min-width: clamp(10rem, 12vw + 1.8rem, 13.5rem);
+    --navbar-cta-padding-inline: clamp(0.9rem, 1.15vw + 0.65rem, 1.75rem);
+    --navbar-cta-padding-block: clamp(0.85rem, 1vw, 1.1rem);
+    --navbar-cta-font-size: clamp(0.72rem, 0.2vw + 0.58rem, 0.92rem);
+}
+
+.navbar-shell__header {
+    padding-inline: var(--navbar-shell-inline);
+    padding-top: var(--navbar-shell-block);
+}
+
+.navbar-shell__inner {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+}
+
+.navbar-shell__row {
+    gap: var(--navbar-row-gap);
+}
+
+.navbar-logo {
+    flex: 0 0 auto;
+    min-width: max-content;
+    justify-self: start;
+}
+
+.navbar-logo a {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo img {
+    height: var(--navbar-logo-height);
+    width: auto;
+    flex-shrink: 0;
+    transform: translateX(var(--navbar-logo-offset));
+}
+
+.navbar-center {
+    flex: 1 1 auto;
+    min-width: 0;
+    justify-self: center;
+}
+
+.navbar-center__pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(calc(100% - 2rem), var(--navbar-pill-width));
+    max-width: var(--navbar-pill-width);
+    min-width: 0;
+    flex-shrink: 1;
+    margin-inline: auto;
+    padding-inline: clamp(1.2rem, 1.8vw, 2.2rem);
+}
+
+.navbar-links {
+    gap: var(--navbar-link-gap);
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.navbar-link-item {
+    flex-shrink: 0;
+    font-size: var(--navbar-link-font-size);
+    padding-inline: var(--navbar-link-padding-inline);
+}
+
+.navbar-actions {
+    flex: 0 0 auto;
+    min-width: 0;
+    gap: clamp(0.5rem, 0.75vw, 0.95rem);
+    justify-self: end;
+}
+
+.navbar-cta-button {
+    flex-shrink: 0;
+    min-width: var(--navbar-cta-min-width);
+    white-space: nowrap;
+    padding-inline: var(--navbar-cta-padding-inline);
+    padding-block: var(--navbar-cta-padding-block);
+    font-size: var(--navbar-cta-font-size);
+}
+
+.navbar-cta-button--mobile {
+    width: 100%;
+    max-width: 15rem;
+    min-width: 0;
+}
+
+@media (max-width: 768px) {
+    .navbar-shell {
+        --navbar-shell-inline: clamp(0.6rem, 1vw, 0.95rem);
+        --navbar-row-gap: clamp(0.4rem, 0.8vw, 0.7rem);
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar-shell {
+        --navbar-link-font-size: clamp(0.58rem, 0.32vw + 0.42rem, 0.72rem);
+        --navbar-cta-min-width: clamp(8.4rem, 8vw + 2.2rem, 10.4rem);
+    }
+}
+
+@media (max-width: 1024px) {
+    .navbar-shell {
+        --navbar-row-gap: clamp(0.5rem, 0.75vw, 0.85rem);
+        --navbar-link-gap: clamp(0.15rem, 0.3vw, 0.45rem);
+        --navbar-link-font-size: clamp(0.56rem, 0.3vw + 0.4rem, 0.7rem);
+    }
+}
+
+@media (max-width: 1152px) {
+    .navbar-shell {
+        --navbar-pill-width: clamp(16rem, 21vw, 24rem);
+        --navbar-cta-min-width: clamp(8rem, 8.8vw + 2.2rem, 10.5rem);
+    }
+}
+
+@media (max-width: 1280px) {
+    .navbar-shell {
+        --navbar-logo-height: clamp(3.8rem, 6vw, 5.8rem);
+        --navbar-cta-font-size: clamp(0.64rem, 0.2vw + 0.52rem, 0.8rem);
+    }
+}
+
+@media (max-width: 1360px) {
+    .navbar-shell {
+        --navbar-pill-width: clamp(18rem, 22vw, 27rem);
+        --navbar-link-padding-inline: clamp(0.2rem, 0.35vw, 0.45rem);
+    }
+}
+
+@media (max-width: 1366px) {
+    .navbar-shell {
+        --navbar-pill-width: clamp(18rem, 23vw, 27rem);
+        --navbar-cta-min-width: clamp(8.8rem, 9.3vw + 2.5rem, 11.5rem);
+    }
+}
+
+@media (max-width: 1440px) {
+    .navbar-shell {
+        --navbar-pill-width: clamp(32rem, 36vw, 48rem);
+        --navbar-link-font-size: clamp(0.62rem, 0.4vw + 0.44rem, 0.82rem);
+        --navbar-link-gap: clamp(0.45rem, 0.85vw, 1.15rem);
+    }
+}
+
+@media (max-width: 1536px) {
+    .navbar-shell {
+        --navbar-pill-width: clamp(36rem, 40vw, 56rem);
+        --navbar-link-gap: clamp(0.5rem, 0.95vw, 1.25rem);
+    }
+}
+
+@media (max-width: 1600px) {
+    .navbar-shell {
+        --navbar-pill-width: clamp(40rem, 44vw, 64rem);
+        --navbar-link-gap: clamp(0.55rem, 1vw, 1.3rem);
+    }
+}
+
+@media (max-width: 1680px) {
+    .navbar-shell {
+        --navbar-pill-width: clamp(44rem, 46vw, 72rem);
+        --navbar-link-gap: clamp(0.6rem, 1.1vw, 1.4rem);
+    }
+}
+
+@media (max-width: 1728px) {
+    .navbar-shell {
+        --navbar-cta-min-width: clamp(9.6rem, 10vw + 2.5rem, 12.5rem);
+    }
+}
+
+@media (max-width: 1800px) {
+    .navbar-shell {
+        --navbar-pill-width: clamp(44rem, 48vw, 80rem);
+    }
+}
+
+@media (min-width: 1920px) {
+    .navbar-shell {
+        --navbar-pill-width: clamp(52rem, 42vw, 108rem);
+    }
+}
+
+@media (min-width: 2048px) {
+    .navbar-shell {
+        --navbar-logo-height: clamp(6.2rem, 4.5vw, 8rem);
+    }
+}
+
+@media (min-width: 2160px) {
+    .navbar-shell {
+        --navbar-cta-min-width: clamp(11rem, 8vw + 4rem, 15rem);
+    }
+}
+
+@media (min-width: 2304px) {
+    .navbar-shell {
+        --navbar-pill-width: clamp(56rem, 38vw, 120rem);
+        --navbar-link-gap: clamp(0.7rem, 1.3vw, 1.9rem);
+    }
+}
+
+@media (min-width: 2560px) {
+    .navbar-shell {
+        --navbar-pill-width: clamp(60rem, 40vw, 128rem);
+        --navbar-link-font-size: clamp(0.95rem, 0.12vw + 0.8rem, 1.25rem);
+        --navbar-logo-height: clamp(7rem, 5vw, 10rem);
+    }
+}
+
+@media (min-width: 2880px) {
+    .navbar-shell {
+        --navbar-shell-inline: clamp(1rem, 1.2vw, 1.8rem);
+        --navbar-pill-width: clamp(90rem, 28vw, 200rem);
+    }
+}
+
+@media (min-width: 3200px) {
+    .navbar-shell {
+        --navbar-cta-min-width: clamp(12rem, 8vw + 4rem, 16rem);
+        --navbar-pill-width: clamp(68rem, 34vw, 144rem);
+    }
+}
+
+@media (min-width: 3440px) {
+    .navbar-shell {
+        --navbar-shell-inline: clamp(1.25rem, 1.4vw, 2.25rem);
+        --navbar-pill-width: clamp(72rem, 34vw, 152rem);
+        --navbar-cta-min-width: clamp(13rem, 9vw + 4rem, 17rem);
+    }
+}
+
+@media (min-width: 3840px) {
+    .navbar-shell {
+        --navbar-pill-width: clamp(76rem, 32vw, 168rem);
+    }
+}
+
+@media (min-width: 5120px) {
+    .navbar-shell {
+        --navbar-link-font-size: clamp(1rem, 0.14vw + 0.86rem, 1.15rem);
+        --navbar-logo-height: clamp(7.5rem, 4vw, 9.5rem);
+        --navbar-pill-width: clamp(80rem, 30vw, 180rem);
+    }
+}
+
+@media (min-width: 7680px) {
+    .navbar-shell {
+        --navbar-shell-inline: clamp(1.8rem, 1.4vw, 2.8rem);
+        --navbar-pill-width: clamp(90rem, 28vw, 200rem);
+    }
+}
