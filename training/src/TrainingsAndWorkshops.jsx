@@ -194,7 +194,7 @@ function SectionHeader({ eyebrow, heading, subheading, tagline }) {
 /* ---------------- Hero ---------------- */
 function Hero() {
   return (
-    <section className="tp-hero">
+    <section className="tp-hero" id="top">
       <div className="tp-hero-mark">
         <StackMark size={40} />
       </div>
@@ -594,8 +594,33 @@ function GetInTouch() {
 export default function TrainingPage() {
   useBrandFonts();
 
+  const navItems = [
+    { label: "Home", href: "#top" },
+    { label: "Courses", href: "#course-catalog" },
+    { label: "Faculty", href: "#faculty" },
+    { label: "Experience", href: "#campus-experience" },
+    { label: "Enroll", href: "#get-in-touch" },
+  ];
+
   return (
     <div className="training-page">
+      <nav className="tp-nav" aria-label="Training page sections">
+        <div className="tp-nav__inner">
+          <a href="#top" className="tp-nav__brand">
+            <StackMark size={24} />
+            <span>STACK</span>
+          </a>
+
+          <div className="tp-nav__links">
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href} className="tp-nav__link">
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </nav>
+
       <Hero />
       <CourseCatalog />
       <Faculty />
