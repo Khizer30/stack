@@ -11,17 +11,31 @@ import CTAButton from "./CTAButton";
 import MobileMenu from "./MobileMenu";
 import SearchButton from "./SearchButton";
 import useNavbar from "../../../hooks/useNavbar";
+import navLinks, { trainingSectionLinks } from "./navLinksData";
 
 const Navbar = () => {
   const scrolled = useNavbar();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("#top");
   const navigate = useNavigate();
   const location = useLocation();
-  const activeHref = location.pathname;
+  const isTrainingPage = location.pathname === "/training";
+  const activeHref = isTrainingPage ? activeSection : location.pathname;
+  const visibleLinks = isTrainingPage ? trainingSectionLinks : navLinks;
 
   const handleNavigate = (href, event) => {
     if (event) {
       event.preventDefault();
+    }
+
+    if (typeof href === "string" && href.startsWith("#")) {
+      setActiveSection(href);
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      setMobileOpen(false);
+      return;
     }
 
     if (typeof href === "string" && href.startsWith("/")) {
@@ -73,7 +87,7 @@ const Navbar = () => {
               lg:flex
             "
           >
-            <NavLinks activeHref={activeHref} onNavigate={handleNavigate} />
+            <NavLinks links={visibleLinks} activeHref={activeHref} onNavigate={handleNavigate} />
           </motion.div>
 
           <div className="navbar-actions flex items-center justify-self-end min-w-0">
@@ -97,6 +111,7 @@ const Navbar = () => {
         <MobileMenu
           open={mobileOpen}
           activeHref={activeHref}
+          links={visibleLinks}
           onNavigate={handleNavigate}
           onClose={() => setMobileOpen(false)}
         />

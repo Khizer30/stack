@@ -7,4 +7,12 @@ const navLinks = [
   { title: "Contact", href: "/contact" },
 ];
 
+export const trainingSectionLinks = [
+  { title: "Overview", href: "#top" },
+  { title: "Courses", href: "#course-catalog" },
+  { title: "Faculty", href: "#faculty" },
+  { title: "Campus", href: "#campus-experience" },
+  { title: "Contact", href: "#get-in-touch" },
+];
+
 export default navLinks;
