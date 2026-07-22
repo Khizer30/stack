@@ -11,3 +11,4 @@
   VITE_EMAILJS_PUBLIC_KEY = "ajDqzciIFwsk0KhgG"
   VITE_EMAILJS_SERVICE_ID = "service_d1uthi9"
   VITE_EMAILJS_TEMPLATE_ID = "template_qulwz7b"
+  VITE_EMAILJS_TO_EMAIL = "arzain.maqboolse@gmail.com"

@@ -5,6 +5,9 @@
 .training-page {
     background: #050507;
     width: 100%;
+    background: #050507;
+    width: 100%;
+    scroll-behavior: smooth;
 }
 
 .dot {

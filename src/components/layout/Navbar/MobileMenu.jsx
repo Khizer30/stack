@@ -1,11 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { FiX } from "react-icons/fi";
 
-import navLinks from "./navLinksData";
 import MobileNavItem from "./MobileNavItem";
 import CTAButton from "./CTAButton";
 
-const MobileMenu = ({ open, activeHref, onNavigate, onClose }) => {
+const MobileMenu = ({ open, activeHref, links, onNavigate, onClose }) => {
   return (
     <AnimatePresence>
       {open && (
@@ -61,7 +60,7 @@ const MobileMenu = ({ open, activeHref, onNavigate, onClose }) => {
             </div>
 
             <div className="flex max-h-96 flex-col items-center gap-3.5 overflow-auto pr-1 no-scrollbar">
-              {navLinks.map((item) => (
+              {links.map((item) => (
                 <MobileNavItem
                   key={item.title}
                   href={item.href}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Code2,
   BrainCircuit,
@@ -17,6 +17,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import "./TrainingsAndWorkshops.css";
+import EnrollmentModal from "./components/EnrollmentModal";
 import { sendTrainingInquiry } from "./lib/emailjs";
 
 /**
@@ -211,7 +212,7 @@ function Hero() {
 }
 
 /* ---------------- Course Catalog ---------------- */
-function CourseCatalog() {
+function CourseCatalog({ onEnroll }) {
   return (
     <section className="tp-section" id="course-catalog">
       <div className="tp-inner">
@@ -224,11 +225,7 @@ function CourseCatalog() {
           {COURSES.map((course) => {
             const Icon = course.icon;
             return (
-              <a
-                href="#get-in-touch"
-                className="tp-card tp-card-link"
-                key={course.title}
-              >
+              <div className="tp-card tp-course-card" key={course.title}>
                 <div className="course-icon-wrap">
                   <Icon size={22} strokeWidth={1.8} />
                 </div>
@@ -241,7 +238,16 @@ function CourseCatalog() {
                   </span>
                   <span>{course.format}</span>
                 </div>
-              </a>
+                <div className="course-actions">
+                  <button
+                    type="button"
+                    className="course-enroll-btn"
+                    onClick={() => onEnroll(course.title)}
+                  >
+                    Enroll Now
+                  </button>
+                </div>
+              </div>
             );
           })}
         </div>
@@ -338,12 +344,12 @@ function Field({ label, error, children }) {
   );
 }
 
-function GetInTouch() {
+function GetInTouch({ initialCourse, sectionRef }) {
   const [form, setForm] = useState({
     name: "",
     phone: "",
     email: "",
-    course: COURSES[0].title,
+    course: initialCourse || COURSES[0].title,
     message: "",
   });
   const [errors, setErrors] = useState({});
@@ -413,7 +419,7 @@ function GetInTouch() {
   };
 
   return (
-    <section className="tp-section tp-section--alt" id="get-in-touch">
+    <section className="tp-section tp-section--alt" id="get-in-touch" ref={sectionRef}>
       <div className="tp-inner">
         <SectionHeader
           eyebrow="Get In Touch"
@@ -593,6 +599,15 @@ function GetInTouch() {
 /* ---------------- Page ---------------- */
 export default function TrainingPage() {
   useBrandFonts();
+  const [selectedCourse, setSelectedCourse] = useState(COURSES[0].title);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openEnrollment = (courseTitle) => {
+    setSelectedCourse(courseTitle);
+    setIsModalOpen(true);
+  };
+
+  const closeEnrollment = () => setIsModalOpen(false);
 
   const navItems = [
     { label: "Home", href: "#top" },
@@ -622,10 +637,15 @@ export default function TrainingPage() {
       </nav>
 
       <Hero />
-      <CourseCatalog />
+      <CourseCatalog onEnroll={openEnrollment} />
       <Faculty />
       <CampusExperience />
       <GetInTouch />
+      <EnrollmentModal
+        open={isModalOpen}
+        course={selectedCourse}
+        onClose={closeEnrollment}
+      />
     </div>
   );
 }
