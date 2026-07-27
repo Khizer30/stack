@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { motion } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -22,6 +22,40 @@ const Navbar = () => {
   const isTrainingPage = location.pathname === "/training";
   const activeHref = isTrainingPage ? activeSection : location.pathname;
   const visibleLinks = isTrainingPage ? trainingSectionLinks : navLinks;
+
+  useEffect(() => {
+    if (!isTrainingPage) return undefined;
+
+    const updateActiveSection = () => {
+      const sections = [
+        "#top",
+        "#course-catalog",
+        "#faculty",
+        "#campus-experience",
+        "#get-in-touch",
+      ];
+      const offset = window.scrollY + 180;
+      let currentSection = "#top";
+
+      sections.forEach((sectionId) => {
+        const section = document.querySelector(sectionId);
+        if (section && section.offsetTop <= offset) {
+          currentSection = sectionId;
+        }
+      });
+
+      setActiveSection(currentSection);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, [isTrainingPage]);
 
   const handleNavigate = (href, event) => {
     if (event) {
@@ -87,7 +121,11 @@ const Navbar = () => {
               lg:flex
             "
           >
-            <NavLinks links={visibleLinks} activeHref={activeHref} onNavigate={handleNavigate} />
+            <NavLinks
+              links={visibleLinks}
+              activeHref={activeHref}
+              onNavigate={handleNavigate}
+            />
           </motion.div>
 
           <div className="navbar-actions flex items-center justify-self-end min-w-0">

@@ -6,6 +6,8 @@ import aseefImage from "../../assets/aseef.jpeg";
 import linkedinIcon from "../../assets/icons/linkedin.svg";
 import githubIcon from "../../assets/icons/github.svg";
 import asadImage from "../../assets/Passport.png";
+import meesumImage from "../../assets/meesum.jpeg";
+import khizerImage from "../../assets/khizer.webp";
 
 const TEAM = [
   {
@@ -13,7 +15,7 @@ const TEAM = [
     role: "Full Stack Developer",
     domain: "Web Development",
     image: zainImage,
-    bio: "Architects the systems the rest of the stack is built on.",
+    bio: "Turns product requirements and rough wireframes into fast, full-stack applications.",
     links: {
       linkedin: "https://www.linkedin.com/in/muhammad-zain-maqbool-7b7127320",
       github: "https://github.com/chzain2005",
@@ -24,10 +26,10 @@ const TEAM = [
     role: "Full Stack Developer & Graphic Designer",
     domain: "Web Development & Design",
     image: aseefImage,
-    bio: "Turns machine learning research into production-ready tools.",
+    bio: "Crafts stunning visual identities and builds the full-stack code behind them.",
     links: {
-      linkedin: "https://www.linkedin.com/",
-      github: "https://github.com/",
+      linkedin: "https://www.linkedin.com/in/aseef-ahmed-9340aa353/",
+      github: "https://github.com/aseefahmed23",
     },
   },
   {
@@ -37,8 +39,30 @@ const TEAM = [
     image: asadImage,
     bio: "Shapes visual identity across every client engagement.",
     links: {
-      linkedin: "https://www.linkedin.com/",
-      github: "https://github.com/",
+      linkedin: "https://www.linkedin.com/in/asad-tariq-334740378/",
+      github: "https://github.com/asadtariq",
+    },
+  },
+  {
+    name: "Khizer",
+    role: "Software Engineer",
+    domain: "Software Engineering",
+    image: khizerImage,
+    bio: "Turns abstract product requirements into clean, maintainable code.",
+    links: {
+      linkedin: "https://www.linkedin.com/in/khizer30/",
+      github: null,
+    },
+  },
+  {
+    name: "Meesam Raza",
+    role: "Project Manager",
+    domain: "Project Management",
+    image: meesumImage,
+    bio: "Coordinates and manages projects, ensuring timely delivery and quality.",
+    links: {
+      linkedin: null,
+      github: null,
     },
   },
 ];

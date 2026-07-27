@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Code2,
   BrainCircuit,
@@ -6,11 +6,15 @@ import {
   Clapperboard,
   Monitor,
   Sofa,
+  SplinePointer,
+  Layers,
   Wifi,
   ParkingCircle,
   ShieldCheck,
   Mail,
+  TvMinimalPlay,
   Phone,
+  Terminal,
   MapPin,
   Send,
   CheckCircle2,
@@ -30,49 +34,53 @@ import { sendTrainingInquiry } from "./lib/emailjs";
 
 const COURSES = [
   {
-    icon: Code2,
+    icon: TvMinimalPlay,
     level: "Beginner → Advanced",
-    title: "Web Development Bootcamp",
+    title: "Digital Marketing",
     description:
-      "From HTML fundamentals to full-stack React and Node apps — build and ship real projects along the way.",
-    duration: "12 weeks",
-    format: "In-person & online",
+      "Master Facebook Ads, SEO, and compelling copywriting. Build powerful digital marketing campaigns that convert.",
   },
   {
     icon: BrainCircuit,
-    level: "Intermediate",
-    title: "AI & Python Mastery",
+    level: "Beginner → Advanced",
+    title: "Python Mastery",
     description:
       "Python foundations, data handling, and applied machine learning — leave with models you actually built.",
-    duration: "10 weeks",
-    format: "In-person & online",
   },
   {
-    icon: PenTool,
-    level: "Beginner",
-    title: "Graphic Design Fundamentals",
+    icon: Layers,
+    level: "Beginner → Advanced",
+    title: "MERN Stack Development",
     description:
-      "Typography, layout, color theory, and brand systems using industry-standard design tools.",
-    duration: "8 weeks",
-    format: "In-person",
+      "Build full-stack web applications using MongoDB/MySQL, Express.js, React, and Node.js.",
   },
   {
     icon: Clapperboard,
     level: "Beginner → Intermediate",
-    title: "Video Editing Workshop",
+    title: "Video Editing",
     description:
-      "Cut, color, and finish short-form and long-form content — from raw footage to a polished final export.",
-    duration: "6 weeks",
-    format: "In-person",
+      "Master Adobe Premiere, After Effects, and CapCut editing. Create professional videos and stunning visual effects.",
   },
   {
-    icon: Monitor,
-    level: "Beginner",
-    title: "IT Essentials Certificate",
+    icon: PenTool,
+    level: "Beginner → Intermediate",
+    title: "Graphics Design",
     description:
-      "Networking basics, hardware troubleshooting, and day-to-day system administration skills.",
-    duration: "6 weeks",
-    format: "In-person & online",
+      "Master Photoshop, Illustrator, and Canva for stunning designs. Create professional visuals and brand identity materials.",
+  },
+  {
+    icon: SplinePointer,
+    level: "Beginner → Intermediate",
+    title: "DaVinci Resolve",
+    description:
+      "Master professional color grading and post-production with DaVinci Resolve. Learn industry-standard cinematic editing.",
+  },
+  {
+    icon: Terminal,
+    level: "Beginner → Intermediate",
+    title: "AI Prompt Engineering",
+    description:
+      "Master prompt design for ChatGPT, Claude, and modern AI tools. Build AI-powered workflows that boost productivity.",
   },
 ];
 
@@ -222,10 +230,14 @@ function CourseCatalog({ onEnroll }) {
           subheading="Five disciplines, structured into real courses — built and taught by the same people who do this work daily."
         />
         <div className="tp-grid tp-grid--3">
-          {COURSES.map((course) => {
+          {COURSES.map((course, index) => {
             const Icon = course.icon;
+            const isLastCard = index === COURSES.length - 1;
             return (
-              <div className="tp-card tp-course-card" key={course.title}>
+              <div
+                className={`tp-card tp-course-card${isLastCard ? " course-card--last" : ""}`}
+                key={course.title}
+              >
                 <div className="course-icon-wrap">
                   <Icon size={22} strokeWidth={1.8} />
                 </div>
@@ -311,7 +323,7 @@ function CampusExperience() {
     <section className="tp-section" id="campus-experience">
       <div className="tp-inner">
         <SectionHeader
-          eyebrow="Campus Experience"
+          eyebrow="Student Amenities"
           heading="Built for focused, comfortable learning"
         />
         <div className="tp-grid tp-grid--4">
@@ -383,14 +395,11 @@ function GetInTouch({ initialCourse, sectionRef }) {
         sender_name: form.name,
         sender_email: form.email,
         sender_phone: form.phone,
-        sender_phone_number: form.phone,
         phone: form.phone,
         name: form.name,
         from_name: form.name,
-        sender_name: form.name,
         email: form.email,
         from_email: form.email,
-        sender_email: form.email,
         reply_to: form.email,
         course_name: form.course,
         course: form.course,
@@ -419,7 +428,11 @@ function GetInTouch({ initialCourse, sectionRef }) {
   };
 
   return (
-    <section className="tp-section tp-section--alt" id="get-in-touch" ref={sectionRef}>
+    <section
+      className="tp-section tp-section--alt"
+      id="get-in-touch"
+      ref={sectionRef}
+    >
       <div className="tp-inner">
         <SectionHeader
           eyebrow="Get In Touch"
@@ -485,10 +498,14 @@ function GetInTouch({ initialCourse, sectionRef }) {
 
             <div className="contact-map-wrap">
               <iframe
-                title="STACK Pvt Ltd campus location"
-                src="https://www.google.com/maps/place/STACK+PVT+LTD/@33.5224041,73.151591,17z/data=!4m14!1m7!3m6!1s0x38dfed34f99ca26f:0xc48e9050df6fb11!2sSTACK+PVT+LTD!8m2!3d33.5224041!4d73.1541659!16s%2Fg%2F11njr4rhsw!3m5!1s0x38dfed34f99ca26f:0xc48e9050df6fb11!8m2!3d33.5224041!4d73.1541659!16s%2Fg%2F11njr4rhsw?entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D"
+                title="STACK Pvt Ltd"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3326.191587723866!2d73.1541659!3d33.5224041!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfed34f99ca26f%3A0xc48e9050df6fb11!2sSTACK%20PVT%20LTD!5e0!3m2!1sen!2s!4v1784790260571!5m2!1sen!2s"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+                referrerPolicy="strict-origin-when-cross-origin"
               />
             </div>
           </div>
@@ -609,33 +626,8 @@ export default function TrainingPage() {
 
   const closeEnrollment = () => setIsModalOpen(false);
 
-  const navItems = [
-    { label: "Home", href: "#top" },
-    { label: "Courses", href: "#course-catalog" },
-    { label: "Faculty", href: "#faculty" },
-    { label: "Experience", href: "#campus-experience" },
-    { label: "Enroll", href: "#get-in-touch" },
-  ];
-
   return (
     <div className="training-page">
-      <nav className="tp-nav" aria-label="Training page sections">
-        <div className="tp-nav__inner">
-          <a href="#top" className="tp-nav__brand">
-            <StackMark size={24} />
-            <span>STACK</span>
-          </a>
-
-          <div className="tp-nav__links">
-            {navItems.map((item) => (
-              <a key={item.href} href={item.href} className="tp-nav__link">
-                {item.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </nav>
-
       <Hero />
       <CourseCatalog onEnroll={openEnrollment} />
       <Faculty />

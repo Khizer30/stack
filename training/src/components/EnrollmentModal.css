@@ -1,172 +1,194 @@
 .enrollment-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  display: grid;
-  place-items: center;
-  padding: 1.5rem;
-  background: rgba(5, 5, 7, 0.82);
-  backdrop-filter: blur(8px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 220ms ease;
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: grid;
+    place-items: center;
+    padding: 1.5rem;
+    background: rgba(5, 5, 7, 0.82);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms ease;
 }
 
 .enrollment-modal-backdrop.is-open {
-  opacity: 1;
-  pointer-events: auto;
+    opacity: 1;
+    pointer-events: auto;
+    animation: fadeInBackdrop 260ms ease forwards;
 }
 
 .enrollment-modal-card {
-  width: min(100%, 760px);
-  max-height: min(100vh, 95vh);
-  overflow-y: auto;
-  border-radius: 1.5rem;
-  background: linear-gradient(180deg, rgba(12, 12, 17, 0.98), rgba(9, 9, 12, 0.97));
-  border: 1px solid rgba(139, 92, 246, 0.26);
-  box-shadow: 0 28px 90px -24px rgba(0, 0, 0, 0.72);
-  padding: 2rem;
-  position: relative;
-  transform: translateY(16px) scale(0.98);
-  transition: transform 240ms ease, opacity 240ms ease;
-  opacity: 0;
+    width: min(100%, 760px);
+    max-height: min(100vh, 95vh);
+    overflow-y: auto;
+    border-radius: 1.5rem;
+    background: linear-gradient(180deg, rgba(12, 12, 17, 0.98), rgba(9, 9, 12, 0.97));
+    border: 1px solid rgba(139, 92, 246, 0.26);
+    box-shadow: 0 28px 90px -24px rgba(0, 0, 0, 0.72);
+    padding: 2rem;
+    position: relative;
+    transform: translateY(16px) scale(0.98);
+    transition: transform 240ms ease, opacity 240ms ease;
+    opacity: 0;
 }
 
 .enrollment-modal-card.is-open {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    animation: slideFadeIn 260ms ease forwards;
+}
+
+@keyframes fadeInBackdrop {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .enrollment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
 }
 
 .enrollment-form-grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: 1fr;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
 }
 
 .enrollment-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
 }
 
 .tp-field-label {
-  font-family: "Inter", sans-serif;
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #c7b7ff;
+    font-family: "Inter", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #c7b7ff;
 }
 
 .tp-field-input {
-  width: 100%;
-  border: 1px solid rgba(139, 92, 246, 0.24);
-  border-radius: 0.95rem;
-  background: rgba(255, 255, 255, 0.04);
-  color: #f5f5f7;
-  padding: 0.9rem 1rem;
-  font-family: "Inter", sans-serif;
-  font-size: 0.95rem;
-  outline: none;
-  transition: border-color 180ms ease, box-shadow 180ms ease;
+    width: 100%;
+    border: 1px solid rgba(139, 92, 246, 0.24);
+    border-radius: 0.95rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: #f5f5f7;
+    padding: 0.9rem 1rem;
+    font-family: "Inter", sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .tp-field-input:focus {
-  border-color: rgba(139, 92, 246, 0.8);
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18);
+    border-color: rgba(139, 92, 246, 0.8);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18);
 }
 
 .tp-field-input--error {
-  border-color: rgba(248, 113, 113, 0.8);
+    border-color: rgba(248, 113, 113, 0.8);
 }
 
 .tp-field-error {
-  color: #fda4af;
-  font-size: 0.8rem;
-  font-family: "Inter", sans-serif;
+    color: #fda4af;
+    font-size: 0.8rem;
+    font-family: "Inter", sans-serif;
 }
 
 .tp-submit-btn {
-  width: 100%;
-  border: none;
-  border-radius: 9999px;
-  padding: 0.95rem 1rem;
-  font-family: "Inter", sans-serif;
-  font-weight: 700;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #ffffff;
-  background: linear-gradient(135deg, #7c3aed, #4c1d95);
-  box-shadow: 0 12px 24px -12px rgba(124, 58, 237, 0.7);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  transition: transform 180ms ease, opacity 180ms ease;
+    width: 100%;
+    border: none;
+    border-radius: 9999px;
+    padding: 0.95rem 1rem;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #ffffff;
+    background: linear-gradient(135deg, #7c3aed, #4c1d95);
+    box-shadow: 0 12px 24px -12px rgba(124, 58, 237, 0.7);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    transition: transform 180ms ease, opacity 180ms ease;
 }
 
 .tp-submit-btn:hover {
-  transform: translateY(-1px);
+    transform: translateY(-1px);
 }
 
 .tp-submit-btn:disabled {
-  opacity: 0.7;
-  cursor: wait;
+    opacity: 0.7;
+    cursor: wait;
 }
 
 .tp-submit-error {
-  margin-top: 0.55rem;
-  color: #fda4af;
-  font-family: "Inter", sans-serif;
-  font-size: 0.92rem;
+    margin-top: 0.55rem;
+    color: #fda4af;
+    font-family: "Inter", sans-serif;
+    font-size: 0.92rem;
 }
 
 .tp-success-state {
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    align-items: flex-start;
 }
 
 .tp-success-icon {
-  color: #34d399;
+    color: #34d399;
 }
 
 .tp-success-title {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 1.2rem;
-  color: #f5f5f7;
-  margin: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.2rem;
+    color: #f5f5f7;
+    margin: 0;
 }
 
 .tp-success-desc {
-  font-family: "Inter", sans-serif;
-  font-size: 0.95rem;
-  color: #a9a9b3;
-  margin: 0;
+    font-family: "Inter", sans-serif;
+    font-size: 0.95rem;
+    color: #a9a9b3;
+    margin: 0;
 }
 
 .tp-success-retry {
-  border: 1px solid rgba(139, 92, 246, 0.28);
-  background: rgba(124, 58, 237, 0.16);
-  color: #f5f5f7;
-  padding: 0.8rem 1rem;
-  border-radius: 9999px;
-  cursor: pointer;
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
+    border: 1px solid rgba(139, 92, 246, 0.28);
+    background: rgba(124, 58, 237, 0.16);
+    color: #f5f5f7;
+    padding: 0.8rem 1rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
 }
 
 @media (min-width: 768px) {
-  .enrollment-form-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+    .enrollment-form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
