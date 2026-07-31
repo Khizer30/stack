@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import VertexLandingPage from "../../training/src/TrainingsAndWorkshops";
+import VertexLandingPage from "../components/training/TrainingsAndWorkshops";
 
 const Training = () => {
   return (
