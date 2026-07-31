@@ -43,3 +43,11 @@ playwright/.auth
 
 # Misc
 *.pem
+
+# Postman
+postman
+
+# Git
+.git
+.gitignore
+.gitattributes
