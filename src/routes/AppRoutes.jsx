@@ -1,11 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-
-import Home from "../pages/Home";
-import Founders from "../pages/Founders";
-import Team from "../pages/Team";
-import Services from "../pages/Services";
-import Projects from "../pages/Projects";
 import Contact from "../pages/Contact";
+import Founders from "../pages/Founders";
+import Home from "../pages/Home";
+import Projects from "../pages/Projects";
+import Services from "../pages/Services";
+import Team from "../pages/Team";
 import Training from "../pages/Training";
 
 const AppRoutes = () => {

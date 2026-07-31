@@ -23,7 +23,7 @@ export default function EnrollmentModal({ open, course, onClose }) {
     courseName: course || "",
     education: "",
     learningMode: DEFAULT_MODE,
-    message: "",
+    message: ""
   });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
@@ -36,7 +36,7 @@ export default function EnrollmentModal({ open, course, onClose }) {
     setForm((prev) => ({
       ...prev,
       courseName: course || prev.courseName || "",
-      learningMode: prev.learningMode || DEFAULT_MODE,
+      learningMode: prev.learningMode || DEFAULT_MODE
     }));
     setErrors({});
     setStatus("idle");
@@ -50,20 +50,13 @@ export default function EnrollmentModal({ open, course, onClose }) {
   const validate = () => {
     const nextErrors = {};
 
-    if (!form.fullName.trim())
-      nextErrors.fullName = "Please enter your full name.";
-    if (!form.email.trim())
-      nextErrors.email = "Please enter your email address.";
-    else if (!/^\S+@\S+\.\S+$/.test(form.email))
-      nextErrors.email = "Please enter a valid email.";
-    if (!form.phoneNumber.trim())
-      nextErrors.phoneNumber = "Please enter your phone number.";
-    if (!form.courseName.trim())
-      nextErrors.courseName = "Please select a course.";
-    if (!form.education.trim())
-      nextErrors.education = "Please share your education level.";
-    if (!form.message.trim())
-      nextErrors.message = "Please share a short note about your goals.";
+    if (!form.fullName.trim()) nextErrors.fullName = "Please enter your full name.";
+    if (!form.email.trim()) nextErrors.email = "Please enter your email address.";
+    else if (!/^\S+@\S+\.\S+$/.test(form.email)) nextErrors.email = "Please enter a valid email.";
+    if (!form.phoneNumber.trim()) nextErrors.phoneNumber = "Please enter your phone number.";
+    if (!form.courseName.trim()) nextErrors.courseName = "Please select a course.";
+    if (!form.education.trim()) nextErrors.education = "Please share your education level.";
+    if (!form.message.trim()) nextErrors.message = "Please share a short note about your goals.";
 
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
@@ -92,7 +85,7 @@ export default function EnrollmentModal({ open, course, onClose }) {
         learning_mode: form.learningMode,
         message: form.message,
         project_details: form.message,
-        submitted_at: new Date().toLocaleString(),
+        submitted_at: new Date().toLocaleString()
       });
 
       setStatus("success");
@@ -103,14 +96,11 @@ export default function EnrollmentModal({ open, course, onClose }) {
         courseName: course || "",
         education: "",
         learningMode: DEFAULT_MODE,
-        message: "",
+        message: ""
       });
     } catch (error) {
       setStatus("error");
-      setSubmitError(
-        error?.message ||
-          "We couldn't send your enrollment request. Please try again later.",
-      );
+      setSubmitError(error?.message || "We couldn't send your enrollment request. Please try again later.");
     }
   };
 
@@ -125,41 +115,23 @@ export default function EnrollmentModal({ open, course, onClose }) {
         aria-labelledby="course-enrollment-title"
         onClick={(event) => event.stopPropagation()}
       >
-        <button
-          type="button"
-          className="modal-close-btn"
-          onClick={onClose}
-          aria-label="Close enrollment form"
-        >
+        <button type="button" className="modal-close-btn" onClick={onClose} aria-label="Close enrollment form">
           ×
         </button>
 
         <div className="modal-heading-wrap">
           <span className="tp-eyebrow-label">Enrollment request</span>
-          <h2
-            id="course-enrollment-title"
-            className="tp-heading tp-heading--modal"
-          >
+          <h2 id="course-enrollment-title" className="tp-heading tp-heading--modal">
             Reserve your seat
           </h2>
-          <p className="tp-subheading tp-subheading--modal">
-            Complete the form below and we will contact you with the next intake
-            details.
-          </p>
+          <p className="tp-subheading tp-subheading--modal">Complete the form below and we will contact you with the next intake details.</p>
         </div>
 
         {status === "success" ? (
           <div className="tp-success-state">
-            <CheckCircle2
-              size={38}
-              strokeWidth={1.6}
-              className="tp-success-icon"
-            />
+            <CheckCircle2 size={38} strokeWidth={1.6} className="tp-success-icon" />
             <h3 className="tp-success-title">Enrollment request sent</h3>
-            <p className="tp-success-desc">
-              Thanks for your interest. We will reach out shortly with course
-              details and scheduling.
-            </p>
+            <p className="tp-success-desc">Thanks for your interest. We will reach out shortly with course details and scheduling.</p>
             <button
               type="button"
               className="tp-success-retry"
@@ -228,11 +200,7 @@ export default function EnrollmentModal({ open, course, onClose }) {
               </Field>
 
               <Field label="Learning Mode">
-                <select
-                  value={form.learningMode}
-                  onChange={update("learningMode")}
-                  className="tp-field-input"
-                >
+                <select value={form.learningMode} onChange={update("learningMode")} className="tp-field-input">
                   <option value="Online">Online</option>
                   <option value="Physical">Physical</option>
                   <option value="Hybrid">Hybrid</option>
@@ -250,22 +218,12 @@ export default function EnrollmentModal({ open, course, onClose }) {
               />
             </Field>
 
-            <button
-              type="submit"
-              className="tp-submit-btn"
-              disabled={status === "submitting"}
-            >
-              {status === "submitting"
-                ? "Sending..."
-                : "Send enrollment request"}
-              {status !== "submitting" ? (
-                <Send size={15} strokeWidth={2.2} />
-              ) : null}
+            <button type="submit" className="tp-submit-btn" disabled={status === "submitting"}>
+              {status === "submitting" ? "Sending..." : "Send enrollment request"}
+              {status !== "submitting" ? <Send size={15} strokeWidth={2.2} /> : null}
             </button>
 
-            {status === "error" ? (
-              <p className="tp-submit-error">{submitError}</p>
-            ) : null}
+            {status === "error" ? <p className="tp-submit-error">{submitError}</p> : null}
           </form>
         )}
       </div>

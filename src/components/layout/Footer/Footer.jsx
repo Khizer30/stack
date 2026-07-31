@@ -1,17 +1,7 @@
+import { Code2, BrainCircuit, Smartphone, BarChart3, Monitor, Code, Mail, Phone, MapPin } from "lucide-react";
 import { useEffect } from "react";
-import linkedinIcon from "../../../assets/icons/linkedin.svg";
 import githubIcon from "../../../assets/icons/github.svg";
-import {
-  Code2,
-  BrainCircuit,
-  Smartphone,
-  BarChart3,
-  Monitor,
-  Code,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
+import linkedinIcon from "../../../assets/icons/linkedin.svg";
 import "./Footer.css";
 
 /**
@@ -24,57 +14,58 @@ import "./Footer.css";
 const SERVICES = [
   {
     label: "Web App Development",
-    icon: Code2,
+    icon: Code2
   },
   {
     label: "AI Integration & Automation",
-    icon: BrainCircuit,
+    icon: BrainCircuit
   },
   {
     label: "Mobile App Development",
-    icon: Smartphone,
+    icon: Smartphone
   },
   {
     label: "Data Analytics through Power BI",
-    icon: BarChart3,
+    icon: BarChart3
   },
   {
     label: "Data Analytics",
-    icon: Monitor,
+    icon: Monitor
   },
   {
     label: "Custom Software Development",
-    icon: Code,
-  },
+    icon: Code
+  }
 ];
 const COMPANY_LINKS = [
   { label: "Founders", href: "/founders" },
   { label: "What We Do", href: "/services" },
   { label: "Products", href: "/products" },
   { label: "Team", href: "/team" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact", href: "/contact" }
 ];
 const SOCIALS = [
   {
     icon: linkedinIcon,
     href: "https://www.linkedin.com",
-    label: "LinkedIn",
+    label: "LinkedIn"
   },
   {
     icon: githubIcon,
     href: "https://github.com",
-    label: "GitHub",
-  },
+    label: "GitHub"
+  }
 ];
 function useBrandFonts() {
   useEffect(() => {
     const id = "stack-brand-fonts";
-    if (document.getElementById(id)) return;
+    if (document.getElementById(id)) {
+      return;
+    }
     const link = document.createElement("link");
     link.id = id;
     link.rel = "stylesheet";
-    link.href =
-      "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap";
+    link.href = "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap";
     document.head.appendChild(link);
   }, []);
 }
@@ -109,28 +100,14 @@ export default function Footer() {
             </div>{" "}
             <p className="footer-tagline">
               {" "}
-              Trust <span className="dot">·</span> Build{" "}
-              <span className="dot">·</span> Innovate{" "}
+              Trust <span className="dot">·</span> Build <span className="dot">·</span> Innovate{" "}
             </p>{" "}
-            <p className="footer-blurb">
-              {" "}
-              A software house working across six disciplines — one team, end to
-              end, from first sketch to production support.{" "}
-            </p>{" "}
+            <p className="footer-blurb"> A software house working across six disciplines — one team, end to end, from first sketch to production support. </p>{" "}
             <div className="footer-socials">
               {" "}
               {SOCIALS.map(({ icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className={`social-link ${label === "LinkedIn" ? "social-link--linkedin" : ""}`}
-                >
-                  <img
-                    src={icon}
-                    alt={`${label} icon`}
-                    className="footer-social-icon"
-                  />
+                <a key={label} href={href} aria-label={label} className={`social-link ${label === "LinkedIn" ? "social-link--linkedin" : ""}`}>
+                  <img src={icon} alt={`${label} icon`} className="footer-social-icon" />
                 </a>
               ))}
             </div>{" "}
@@ -149,12 +126,7 @@ export default function Footer() {
                   {" "}
                   <a href="/services" className="footer-link">
                     {" "}
-                    <Icon
-                      size={14}
-                      strokeWidth={1.8}
-                      className="footer-link-icon"
-                    />{" "}
-                    {label}
+                    <Icon size={14} strokeWidth={1.8} className="footer-link-icon" /> {label}
                   </a>{" "}
                 </li>
               ))}
@@ -185,36 +157,21 @@ export default function Footer() {
                 {" "}
                 <a href="mailto:info@stack.pk" className="footer-link">
                   {" "}
-                  <Mail
-                    size={14}
-                    strokeWidth={1.8}
-                    className="footer-link-icon"
-                  />{" "}
-                  info@stack.pk{" "}
+                  <Mail size={14} strokeWidth={1.8} className="footer-link-icon" /> info@stack.pk{" "}
                 </a>{" "}
               </li>{" "}
               <li>
                 {" "}
                 <a href="tel:+923390086967" className="footer-link">
                   {" "}
-                  <Phone
-                    size={14}
-                    strokeWidth={1.8}
-                    className="footer-link-icon"
-                  />{" "}
-                  +92 339 0086967{" "}
+                  <Phone size={14} strokeWidth={1.8} className="footer-link-icon" /> +92 339 0086967{" "}
                 </a>{" "}
               </li>{" "}
               <li>
                 {" "}
                 <span className="footer-link footer-link--static">
                   {" "}
-                  <MapPin
-                    size={14}
-                    strokeWidth={1.8}
-                    className="footer-link-icon"
-                  />{" "}
-                  DHA Residencia DHA 2, Islamabad{" "}
+                  <MapPin size={14} strokeWidth={1.8} className="footer-link-icon" /> DHA Residencia DHA 2, Islamabad{" "}
                 </span>{" "}
               </li>{" "}
             </ul>{" "}

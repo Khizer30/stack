@@ -8,7 +8,7 @@ const ClickSpark = ({
   duration = 400,
   easing = "ease-out",
   extraScale = 1.0,
-  children,
+  children
 }) => {
   const canvasRef = useRef(null);
   const sparksRef = useRef([]);
@@ -16,7 +16,9 @@ const ClickSpark = ({
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) {
+      return;
+    }
 
     let resizeTimeout;
 
@@ -56,12 +58,14 @@ const ClickSpark = ({
           return t * (2 - t);
       }
     },
-    [easing],
+    [easing]
   );
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) {
+      return;
+    }
     const ctx = canvas.getContext("2d");
 
     let animationId;
@@ -112,7 +116,9 @@ const ClickSpark = ({
   useEffect(() => {
     const handlePointer = (e) => {
       const canvas = canvasRef.current;
-      if (!canvas) return;
+      if (!canvas) {
+        return;
+      }
 
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -123,7 +129,7 @@ const ClickSpark = ({
         x,
         y,
         angle: (2 * Math.PI * i) / sparkCount,
-        startTime: now,
+        startTime: now
       }));
 
       sparksRef.current.push(...newSparks);
@@ -150,7 +156,7 @@ const ClickSpark = ({
           display: "block",
           userSelect: "none",
           pointerEvents: "none",
-          zIndex: 9999,
+          zIndex: 9999
         }}
       />
       <div className="relative w-full h-full">{children}</div>

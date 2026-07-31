@@ -1,8 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { FiX } from "react-icons/fi";
-
-import MobileNavItem from "./MobileNavItem";
 import CTAButton from "./CTAButton";
+import MobileNavItem from "./MobileNavItem";
 
 const MobileMenu = ({ open, activeHref, links, onNavigate, onClose }) => {
   return (
@@ -44,9 +43,7 @@ const MobileMenu = ({ open, activeHref, links, onNavigate, onClose }) => {
           >
             <div className="mb-4 flex items-start translate-x-10 translate-y-2 justify-between gap-4 pb-4">
               <div>
-                <p className="mt-2 text-[1.1rem] font-black uppercase tracking-[0.32em] text-white">
-                  STACK
-                </p>
+                <p className="mt-2 text-[1.1rem] font-black uppercase tracking-[0.32em] text-white">STACK</p>
               </div>
 
               <button
@@ -61,24 +58,12 @@ const MobileMenu = ({ open, activeHref, links, onNavigate, onClose }) => {
 
             <div className="flex max-h-96 flex-col items-center gap-3.5 overflow-auto pr-1 no-scrollbar">
               {links.map((item) => (
-                <MobileNavItem
-                  key={item.title}
-                  href={item.href}
-                  title={item.title}
-                  active={activeHref === item.href}
-                  onClick={onNavigate}
-                />
+                <MobileNavItem key={item.title} href={item.href} title={item.title} active={activeHref === item.href} onClick={onNavigate} />
               ))}
             </div>
 
             <div className="mt-7 flex justify-center">
-              <CTAButton
-                href="/training"
-                label={"Trainings &\nWorkshops"}
-                variant="mobile"
-                target="_blank"
-                rel="noopener noreferrer"
-              />
+              <CTAButton href="/training" label={"Trainings &\nWorkshops"} variant="mobile" target="_blank" rel="noopener noreferrer" />
             </div>
           </motion.div>
         </>

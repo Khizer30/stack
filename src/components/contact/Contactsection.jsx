@@ -1,14 +1,5 @@
-﻿import { useEffect, useState } from "react";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  CheckCircle2,
-  Globe,
-  Mail as MailIcon,
-  Phone as PhoneIcon,
-} from "lucide-react";
+﻿import { Mail, Phone, MapPin, Send, CheckCircle2, Globe, Mail as MailIcon, Phone as PhoneIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 import { sendContactEmail } from "@/lib/emailjs";
 import "./Contactsection.css";
 
@@ -19,7 +10,7 @@ const SERVICES = [
   "Data Analytics through Power BI",
   "Data Analytics",
   "Custom Software Development",
-  "Something else",
+  "Something else"
 ];
 
 const CONTACT_INFO = [
@@ -27,31 +18,32 @@ const CONTACT_INFO = [
     icon: Mail,
     label: "Email",
     value: "info@stack.pk",
-    href: "mailto:info@stack.pk",
+    href: "mailto:info@stack.pk"
   },
   {
     icon: Phone,
     label: "Phone",
     value: "+92 339 0086967",
-    href: "tel:+923390086967",
+    href: "tel:+923390086967"
   },
   {
     icon: MapPin,
     label: "Studio",
     value: "DHA Residencia DHA 2, Islamabad",
-    href: null,
-  },
+    href: null
+  }
 ];
 
 function useBrandFonts() {
   useEffect(() => {
     const id = "stack-brand-fonts";
-    if (document.getElementById(id)) return;
+    if (document.getElementById(id)) {
+      return;
+    }
     const link = document.createElement("link");
     link.id = id;
     link.rel = "stylesheet";
-    link.href =
-      "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap";
+    link.href = "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap";
     document.head.appendChild(link);
   }, []);
 }
@@ -74,24 +66,28 @@ export default function ContactSection() {
     email: "",
     service: SERVICES[0],
     message: "",
-    website: "",
+    website: ""
   });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const update = (key) => (e) =>
-    setForm((f) => ({ ...f, [key]: e.target.value }));
+  const update = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
 
   const validate = () => {
     const next = {};
-    if (!form.name.trim()) next.name = "Please enter your name.";
-    if (!form.email.trim()) next.email = "Please enter your email.";
-    else if (!/^\S+@\S+\.\S+$/.test(form.email))
+    if (!form.name.trim()) {
+      next.name = "Please enter your name.";
+    }
+    if (!form.email.trim()) {
+      next.email = "Please enter your email.";
+    } else if (!/^\S+@\S+\.\S+$/.test(form.email)) {
       next.email = "That email doesn't look right.";
-    if (!form.message.trim())
+    }
+    if (!form.message.trim()) {
       next.message = "Tell us a little about the project.";
+    }
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -100,10 +96,14 @@ export default function ContactSection() {
     e.preventDefault();
 
     // Prevent duplicate submissions while the request is in flight.
-    if (isSubmitting || status === "submitting") return;
+    if (isSubmitting || status === "submitting") {
+      return;
+    }
 
     // Validate the required fields before sending anything.
-    if (!validate()) return;
+    if (!validate()) {
+      return;
+    }
 
     setErrorMessage("");
     setStatus("submitting");
@@ -118,7 +118,7 @@ export default function ContactSection() {
         message: form.message,
         submitted_at: new Date().toLocaleString(),
         // Keep the honeypot field out of the email payload.
-        website: form.website,
+        website: form.website
       };
 
       // Send the form data to EmailJS.
@@ -132,14 +132,12 @@ export default function ContactSection() {
         email: "",
         service: SERVICES[0],
         message: "",
-        website: "",
+        website: ""
       });
     } catch (error) {
       // Keep the existing UI intact while surfacing a clear error.
       setStatus("error");
-      setErrorMessage(
-        error.message || "Something went wrong. Please try again.",
-      );
+      setErrorMessage(error.message || "Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -157,8 +155,7 @@ export default function ContactSection() {
         <h2 className="contact-title">Let's build something together</h2>
 
         <p className="contact-subtitle">
-          Connect<span className="contact-accent">·</span> Collaborate{" "}
-          <span className="contact-accent">·</span> Create
+          Connect<span className="contact-accent">·</span> Collaborate <span className="contact-accent">·</span> Create
         </p>
 
         <div className="contact-panel-wrap">
@@ -167,8 +164,7 @@ export default function ContactSection() {
             <div>
               <h3 className="contact-info-title">Talk to the team</h3>
               <p className="contact-info-copy">
-                Tell us what you're building and which discipline it needs —
-                we'll reply within one business day with next steps.
+                Tell us what you're building and which discipline it needs — we'll reply within one business day with next steps.
               </p>
 
               <div className="contact-contact-list">
@@ -186,11 +182,7 @@ export default function ContactSection() {
                     </div>
                   );
                   return item.href ? (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      className="contact-info-link"
-                    >
+                    <a key={item.label} href={item.href} className="contact-info-link">
                       {content}
                     </a>
                   ) : (
@@ -207,25 +199,20 @@ export default function ContactSection() {
                 {
                   icon: Globe,
                   href: "https://stack.pk",
-                  ariaLabel: "Website",
+                  ariaLabel: "Website"
                 },
                 {
                   icon: MailIcon,
                   href: "mailto:info@stack.pk",
-                  ariaLabel: "Email",
+                  ariaLabel: "Email"
                 },
                 {
                   icon: PhoneIcon,
                   href: "tel:+923390086967",
-                  ariaLabel: "Phone",
-                },
+                  ariaLabel: "Phone"
+                }
               ].map(({ icon: SocialIcon, href, ariaLabel }) => (
-                <a
-                  key={ariaLabel}
-                  href={href}
-                  className="contact-social-link"
-                  aria-label={ariaLabel}
-                >
+                <a key={ariaLabel} href={href} className="contact-social-link" aria-label={ariaLabel}>
                   <SocialIcon size={18} strokeWidth={1.8} />
                 </a>
               ))}
@@ -237,14 +224,8 @@ export default function ContactSection() {
               <div className="contact-success-state">
                 <CheckCircle2 size={40} strokeWidth={1.6} className="mb-4" />
                 <h3 className="contact-success-title">Message sent</h3>
-                <p className="contact-success-copy">
-                  Thanks for reaching out — we'll get back to you within one
-                  business day.
-                </p>
-                <button
-                  className="contact-secondary-button"
-                  onClick={() => setStatus("idle")}
-                >
+                <p className="contact-success-copy">Thanks for reaching out — we'll get back to you within one business day.</p>
+                <button className="contact-secondary-button" onClick={() => setStatus("idle")}>
                   Send another message
                 </button>
               </div>
@@ -274,11 +255,7 @@ export default function ContactSection() {
 
                 <div className="mb-5">
                   <Field label="Which service do you need?">
-                    <select
-                      value={form.service}
-                      onChange={update("service")}
-                      className="contact-select"
-                    >
+                    <select value={form.service} onChange={update("service")} className="contact-select">
                       {SERVICES.map((s) => (
                         <option key={s} value={s}>
                           {s}
@@ -289,11 +266,7 @@ export default function ContactSection() {
                 </div>
 
                 <div className="mb-7">
-                  <Field
-                    label="Project details"
-                    error={errors.message}
-                    className="project-field"
-                  >
+                  <Field label="Project details" error={errors.message} className="project-field">
                     <textarea
                       rows={5}
                       value={form.message}
@@ -314,18 +287,10 @@ export default function ContactSection() {
                   style={{ display: "none" }}
                 />
 
-                {status === "error" && errorMessage ? (
-                  <div className="contact-form-error">{errorMessage}</div>
-                ) : null}
+                {status === "error" && errorMessage ? <div className="contact-form-error">{errorMessage}</div> : null}
 
-                <button
-                  type="submit"
-                  disabled={status === "submitting" || isSubmitting}
-                  className="contact-submit"
-                >
-                  {status === "submitting" || isSubmitting
-                    ? "Sending..."
-                    : "Send message"}
+                <button type="submit" disabled={status === "submitting" || isSubmitting} className="contact-submit">
+                  {status === "submitting" || isSubmitting ? "Sending..." : "Send message"}
                   <Send size={15} strokeWidth={2.2} />
                 </button>
               </form>

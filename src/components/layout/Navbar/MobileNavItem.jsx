@@ -14,7 +14,7 @@ const MobileNavItem = ({ href, title, active, onClick }) => {
       whileTap={{ scale: 0.98 }}
       className="
 				flex
-				items-center 
+				items-center
 				justify-center
 				rounded-[1.15rem]
 				border

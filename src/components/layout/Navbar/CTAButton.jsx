@@ -1,16 +1,8 @@
-import { useRef } from "react";
-
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useRef } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 
-const CTAButton = ({
-  href = "#contact",
-  label = "Start a Project",
-  onClick,
-  target,
-  rel,
-  variant = "desktop",
-}) => {
+const CTAButton = ({ href = "#contact", label = "Start a Project", onClick, target, rel, variant = "desktop" }) => {
   const isMobileVariant = variant === "mobile";
   const buttonRef = useRef(null);
   const x = useMotionValue(0);
@@ -60,9 +52,7 @@ const CTAButton = ({
           : "navbar-cta-button group inline-flex items-center justify-center gap-3 rounded-full border border-[rgba(157,92,255,0.35)] bg-[linear-gradient(135deg,rgba(123,46,255,0.95),rgba(73,23,200,0.95))] px-7 py-4 text-[0.92rem] font-semibold uppercase tracking-[0.22em] text-white shadow-[0_20px_45px_rgba(123,46,255,0.32)] transition-shadow duration-300 hover:shadow-[0_24px_55px_rgba(123,46,255,0.38)]"
       }
     >
-      <span className="whitespace-pre-line text-center leading-tight">
-        {label}
-      </span>
+      <span className="whitespace-pre-line text-center leading-tight">{label}</span>
       <FiArrowUpRight className="text-xl transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
     </motion.a>
   );

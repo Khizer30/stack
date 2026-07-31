@@ -1,9 +1,9 @@
-import HeroSection from "../components/hero/HeroSection";
-import HeroFounders from "../components/hero/HeroFounders";
-import Team from "../components/team/Team";
-import WhatWeDoSection from "../components/services/Whatwedosection";
-import ProjectsSection from "../components/projects/ProjectsSection";
 import ContactSection from "../components/contact/Contactsection";
+import HeroFounders from "../components/hero/HeroFounders";
+import HeroSection from "../components/hero/HeroSection";
+import ProjectsSection from "../components/projects/ProjectsSection";
+import WhatWeDoSection from "../components/services/Whatwedosection";
+import Team from "../components/team/Team";
 
 const Home = () => {
   return (
