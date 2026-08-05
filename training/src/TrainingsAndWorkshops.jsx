@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
+
 import {
   Code2,
   BrainCircuit,
   PenTool,
   Clapperboard,
-  Monitor,
   Sofa,
-  SplinePointer,
   Layers,
+  ChevronLeft,
+  ChevronRight,
   Wifi,
   Computer,
   ParkingCircle,
@@ -28,6 +29,7 @@ import mubeenImg from "../../src/assets/1.png";
 import hamzaImg from "../../src/assets/2.png";
 import khizerImg from "../../src/assets/khizer.webp";
 import meesumImg from "../../src/assets/meesum.jpeg";
+import stdImg from "../../src/assets/student.jpeg";
 /**
  * TrainingPage — STACK Pvt Ltd
  * A single-page "Training & Workshops" experience: Hero -> Course Catalog
@@ -122,30 +124,40 @@ const FACULTY = [
   },
 ];
 
-const AMENITIES = [
+const amenities = [
   {
     icon: Sofa,
     title: "Student Lounge",
-    description:
-      "A comfortable space to relax, collaborate, or review notes between sessions.",
   },
   {
     icon: Wifi,
     title: "High-Speed Internet",
-    description:
-      "Reliable, fast connectivity across the whole campus for labs and live projects.",
   },
   {
     icon: ParkingCircle,
     title: "Free Parking",
-    description:
-      "Dedicated, secure parking available at no extra cost for every student.",
   },
   {
     icon: ShieldCheck,
     title: "24/7 Security",
-    description:
-      "Round-the-clock on-site security so you can focus on learning, not worrying.",
+  },
+];
+
+const slides = [
+  {
+    image: stdImg,
+    title: "Modern Classrooms",
+    desc: "Interactive learning environment",
+  },
+  {
+    image: "",
+    title: "Collaborative Workspace",
+    desc: "Learn together and build together",
+  },
+  {
+    image: "",
+    title: "Professional Campus",
+    desc: "Designed for future developers",
   },
 ];
 
@@ -330,26 +342,125 @@ function Faculty() {
 
 /* ---------------- Campus Experience ---------------- */
 function CampusExperience() {
+  const [active, setActive] = useState(0);
+  const [previousActive, setPreviousActive] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const transitionDuration = 450;
+
+  const changeSlide = (index) => {
+    if (index === active) return;
+    setPreviousActive(active);
+    setActive(index);
+    setIsAnimating(true);
+  };
+
+  const prev = () => {
+    changeSlide(active === 0 ? slides.length - 1 : active - 1);
+  };
+
+  const next = () => {
+    changeSlide(active === slides.length - 1 ? 0 : active + 1);
+  };
+
+  useEffect(() => {
+    const autoAdvance = window.setTimeout(() => {
+      changeSlide(active === slides.length - 1 ? 0 : active + 1);
+    }, 3000);
+
+    return () => window.clearTimeout(autoAdvance);
+  }, [active]);
+
+  useEffect(() => {
+    if (!isAnimating) return undefined;
+    const timeout = window.setTimeout(() => {
+      setIsAnimating(false);
+    }, transitionDuration);
+    return () => window.clearTimeout(timeout);
+  }, [isAnimating]);
+
   return (
-    <section className="tp-section" id="campus-experience">
-      <div className="tp-inner">
-        <SectionHeader
-          eyebrow="Student Amenities"
-          heading="Built for focused, comfortable learning"
-        />
-        <div className="tp-grid tp-grid--4">
-          {AMENITIES.map((item) => {
-            const Icon = item.icon;
-            return (
-              <div className="tp-card amenity-card" key={item.title}>
-                <div className="amenity-icon-wrap">
-                  <Icon size={22} strokeWidth={1.8} />
-                </div>
-                <h3 className="amenity-title">{item.title}</h3>
-                <p className="amenity-desc">{item.description}</p>
-              </div>
-            );
-          })}
+    <section id="campus-experience" className="campus-section">
+      <div className="campus-container">
+        {/* Section Heading */}
+        <div className="campus-heading">
+          <span className="heading-line"></span>
+          <p className="heading-text">Campus Experience</p>
+          <span className="heading-line"></span>
+        </div>
+
+        {/* Main Layout */}
+        <div className="campus-grid">
+          {/* Left Side */}
+          <div className="campus-left">
+            <h2 className="campus-title">
+              Built for focused,
+              <br />
+              comfortable learning
+            </h2>
+
+            <p className="campus-description">
+              Enjoy a comfortable campus with modern lounges, high-speed
+              internet, free secure parking, and 24/7 security—everything you
+              need for a safe and productive learning experience.
+            </p>
+
+            <div className="amenities-grid">
+              {amenities.map((item, index) => {
+                const Icon = item.icon;
+
+                return (
+                  <div className="amenity-card" key={index}>
+                    <Icon size={38} className="amenity-icon" />
+
+                    <h3 className="amenity-title">{item.title}</h3>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right Side */}
+          <div className="slider">
+            {isAnimating && (
+              <img
+                src={slides[previousActive].image}
+                alt={slides[previousActive].title}
+                className="slider-image slider-image--fade-out"
+              />
+            )}
+
+            <img
+              src={slides[active].image}
+              alt={slides[active].title}
+              className={`slider-image${isAnimating ? " slider-image--fade-in" : ""}`}
+            />
+
+            <div className="slider-overlay"></div>
+
+            <div className="slider-content">
+              <h3 className="slider-title">{slides[active].title}</h3>
+
+              <p className="slider-description">{slides[active].desc}</p>
+            </div>
+
+            <button className="slider-arrow left" onClick={prev}>
+              <ChevronLeft size={58} strokeWidth={1.5} />
+            </button>
+
+            <button className="slider-arrow right" onClick={next}>
+              <ChevronRight size={58} strokeWidth={1.5} />
+            </button>
+
+            <div className="slider-dots">
+              {slides.map((_, index) => (
+                <span
+                  key={index}
+                  className={`slider-dot ${active === index ? "active" : ""}`}
+                  onClick={() => setActive(index)}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
