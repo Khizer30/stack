@@ -9,6 +9,7 @@ import {
   SplinePointer,
   Layers,
   Wifi,
+  Computer,
   ParkingCircle,
   ShieldCheck,
   Mail,
@@ -23,7 +24,10 @@ import {
 import "./TrainingsAndWorkshops.css";
 import EnrollmentModal from "./components/EnrollmentModal";
 import { sendTrainingInquiry } from "./lib/emailjs";
-
+import mubeenImg from "../../src/assets/1.png";
+import hamzaImg from "../../src/assets/2.png";
+import khizerImg from "../../src/assets/khizer.webp";
+import meesumImg from "../../src/assets/meesum.jpeg";
 /**
  * TrainingPage — STACK Pvt Ltd
  * A single-page "Training & Workshops" experience: Hero -> Course Catalog
@@ -34,80 +38,87 @@ import { sendTrainingInquiry } from "./lib/emailjs";
 
 const COURSES = [
   {
-    icon: TvMinimalPlay,
-    level: "Beginner → Advanced",
-    title: "Digital Marketing",
+    icon: Terminal,
+    level: "6 Months",
+    title: "AI Mastery Program",
     description:
-      "Master Facebook Ads, SEO, and compelling copywriting. Build powerful digital marketing campaigns that convert.",
-  },
-  {
-    icon: BrainCircuit,
-    level: "Beginner → Advanced",
-    title: "Python Mastery",
-    description:
-      "Python foundations, data handling, and applied machine learning — leave with models you actually built.",
+      "Learn programming from the fundamentals to advanced concepts and build real-world AI models and intelligent applications.",
   },
   {
     icon: Layers,
-    level: "Beginner → Advanced",
-    title: "MERN Stack Development",
+    level: "6 Months",
+    title: "Full Stack Web Development",
     description:
-      "Build full-stack web applications using MongoDB/MySQL, Express.js, React, and Node.js.",
+      "Master frontend, backend, databases, APIs, and modern development tools to build complete professional web applications.",
+  },
+  {
+    icon: BrainCircuit,
+    level: "2 Months",
+    title: "AI Prompt Engineering",
+    description:
+      "Learn to write powerful prompts, use advanced AI tools, and create reliable outputs for real-world tasks.",
   },
   {
     icon: Clapperboard,
-    level: "Beginner → Intermediate",
-    title: "Video Editing",
+    level: "4 Months",
+    title: "Video Editing & Content Creation ",
     description:
-      "Master Adobe Premiere, After Effects, and CapCut editing. Create professional videos and stunning visual effects.",
+      "Master CapCut, Premiere Pro, After Effects, scripting, recording, storytelling, and content creation for social media.",
+  },
+  {
+    icon: TvMinimalPlay,
+    level: "3 Months",
+    title: "Digital Marketing",
+    description:
+      "Learn social media marketing, SEO, content strategy, advertising, audience growth, and digital campaigns for businesses.",
+  },
+  {
+    icon: Code2,
+    level: "3 Months",
+    title: "Advanced Python Programming",
+    description:
+      " Master advanced Python programming, automation, problem-solving, and real-world application development through practical projects.",
+  },
+  {
+    icon: Computer,
+    level: "3 Months",
+    title: "Professional IT Skills",
+    description:
+      "Master typing, Microsoft Word, Excel, PowerPoint, essential computer skills, and practical AI tools for work.",
   },
   {
     icon: PenTool,
-    level: "Beginner → Intermediate",
-    title: "Graphics Design",
+    level: "2 Months",
+    title: "Client Acquisition & Freelancing",
     description:
-      "Master Photoshop, Illustrator, and Canva for stunning designs. Create professional visuals and brand identity materials.",
-  },
-  {
-    icon: SplinePointer,
-    level: "Beginner → Intermediate",
-    title: "DaVinci Resolve",
-    description:
-      "Master professional color grading and post-production with DaVinci Resolve. Learn industry-standard cinematic editing.",
-  },
-  {
-    icon: Terminal,
-    level: "Beginner → Intermediate",
-    title: "AI Prompt Engineering",
-    description:
-      "Master prompt design for ChatGPT, Claude, and modern AI tools. Build AI-powered workflows that boost productivity.",
+      "Learn LinkedIn outreach, lead generation, freelancing, client communication, proposals, follow-ups, and strategies to win clients.",
   },
 ];
 
 const FACULTY = [
   {
-    name: "Ayesha Khan",
-    designation: "Lead Instructor, Web Development",
-    experience: "8+ years experience",
-    image: "https://i.pravatar.cc/200?img=47",
+    name: "Mubeen Tariq",
+    designation: "Motion Animations & Marketing Trainer",
+    experience: "4+ years experience",
+    image: mubeenImg,
   },
   {
-    name: "Bilal Ahmed",
-    designation: "AI & Python Trainer",
-    experience: "6+ years experience",
-    image: "https://i.pravatar.cc/200?img=12",
+    name: "Muhammad Hamza",
+    designation: "AI & Data Science/Data Analytics Trainer",
+    experience: "4+ years experience",
+    image: hamzaImg,
   },
   {
-    name: "Sana Malik",
-    designation: "Graphic Design Faculty",
-    experience: "7+ years experience",
-    image: "https://i.pravatar.cc/200?img=32",
+    name: "Muhammad Khizer",
+    designation: "Machine Learning & Web Development Trainer",
+    experience: "4+ years experience",
+    image: khizerImg,
   },
   {
-    name: "Hamza Raza",
-    designation: "Video Production Coach",
-    experience: "5+ years experience",
-    image: "https://i.pravatar.cc/200?img=51",
+    name: "Meesum Raza",
+    designation: "IT & Freelancing Trainer",
+    experience: "4+ years experience",
+    image: meesumImg,
   },
 ];
 
@@ -616,6 +627,14 @@ function GetInTouch({ initialCourse, sectionRef }) {
 /* ---------------- Page ---------------- */
 export default function TrainingPage() {
   useBrandFonts();
+  useEffect(() => {
+    const previousTitle = document.title;
+    document.title = "LEARN WITH STACK";
+    return () => {
+      document.title = previousTitle;
+    };
+  }, []);
+
   const [selectedCourse, setSelectedCourse] = useState(COURSES[0].title);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
