@@ -64,7 +64,7 @@ const MobileMenu = ({ open, activeHref, links, onNavigate, onClose }) => {
             </div>
 
             <div className="mt-7 flex justify-center">
-              <CTAButton href="/training" label={"Trainings &\nWorkshops"} variant="mobile" target="_blank" rel="noopener noreferrer" />
+              <CTAButton href="/training" label={"Trainings &\nWorkshops"} variant="mobile" />
             </div>
           </motion.div>
         </>

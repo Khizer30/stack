@@ -120,7 +120,7 @@ const Navbar = () => {
 
           <div className="navbar-actions flex items-center justify-self-end min-w-0">
             <div className="hidden lg:flex min-w-0">
-              <CTAButton href="/training" label={"Trainings &\nWorkshops"} variant="desktop" target="_blank" rel="noopener noreferrer" />
+              <CTAButton href="/training" label={"Trainings &\nWorkshops"} variant="desktop" />
             </div>
 
             <SearchButton open={mobileOpen} onClick={() => setMobileOpen((current) => !current)} />

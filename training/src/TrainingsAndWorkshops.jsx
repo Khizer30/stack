@@ -140,17 +140,10 @@ const slides = [
     image: stdImg,
     title: "Modern Classrooms",
     desc: "Interactive learning environment"
-  },
-  {
-    image: "",
-    title: "Collaborative Workspace",
-    desc: "Learn together and build together"
-  },
-  {
-    image: "",
-    title: "Professional Campus",
-    desc: "Designed for future developers"
   }
+  // TODO: add more campus photos here once available, e.g.
+  // { image: workspaceImg, title: "Collaborative Workspace", desc: "Learn together and build together" },
+  // { image: campusImg, title: "Professional Campus", desc: "Designed for future developers" },
 ];
 
 function useBrandFonts() {
@@ -326,6 +319,8 @@ function CampusExperience() {
   };
 
   useEffect(() => {
+    if (slides.length <= 1) return undefined;
+
     const autoAdvance = window.setTimeout(() => {
       changeSlide(active === slides.length - 1 ? 0 : active + 1);
     }, 3000);
@@ -395,19 +390,23 @@ function CampusExperience() {
               <p className="slider-description">{slides[active].desc}</p>
             </div>
 
-            <button className="slider-arrow left" onClick={prev}>
-              <ChevronLeft size={58} strokeWidth={1.5} />
-            </button>
+            {slides.length > 1 && (
+              <>
+                <button className="slider-arrow left" onClick={prev}>
+                  <ChevronLeft size={58} strokeWidth={1.5} />
+                </button>
 
-            <button className="slider-arrow right" onClick={next}>
-              <ChevronRight size={58} strokeWidth={1.5} />
-            </button>
+                <button className="slider-arrow right" onClick={next}>
+                  <ChevronRight size={58} strokeWidth={1.5} />
+                </button>
 
-            <div className="slider-dots">
-              {slides.map((_, index) => (
-                <span key={index} className={`slider-dot ${active === index ? "active" : ""}`} onClick={() => setActive(index)} />
-              ))}
-            </div>
+                <div className="slider-dots">
+                  {slides.map((_, index) => (
+                    <span key={index} className={`slider-dot ${active === index ? "active" : ""}`} onClick={() => setActive(index)} />
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
