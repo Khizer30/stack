@@ -1,13 +1,16 @@
 {
-  "name": "stack-website",
+  "name": "stack",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check \"**/*.{js,jsx,json,md}\"",
+    "format:fix": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "start": "vite preview"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

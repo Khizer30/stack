@@ -1,12 +1,4 @@
-import {
-  Code2,
-  BrainCircuit,
-  Smartphone,
-  BarChart3,
-  Monitor,
-  Code,
-  Check,
-} from "lucide-react";
+import { Code2, BrainCircuit, Smartphone, BarChart3, Monitor, Code, Check } from "lucide-react";
 import BorderGlow from "../common/BorderGlow";
 import "./Whatwedosection.css";
 
@@ -19,69 +11,39 @@ const SERVICES = [
   {
     title: "Web App Development",
     icon: Code2,
-    description:
-      "From concept to launch, we build web applications that are fast, scalable, and user-friendly.",
-    points: [
-      "React / Next.js front-ends",
-      "Node & API architecture",
-      "Performance & SEO tuning",
-    ],
+    description: "From concept to launch, we build web applications that are fast, scalable, and user-friendly.",
+    points: ["React / Next.js front-ends", "Node & API architecture", "Performance & SEO tuning"]
   },
   {
     title: "AI Integration & Automation",
     icon: BrainCircuit,
-    description:
-      "Automation, AI, and machine learning solutions that streamline operations and unlock new capabilities.",
-    points: [
-      "Custom AI & ML models",
-      "Process automation & optimization",
-      "Data-driven insights & analytics",
-    ],
+    description: "Automation, AI, and machine learning solutions that streamline operations and unlock new capabilities.",
+    points: ["Custom AI & ML models", "Process automation & optimization", "Data-driven insights & analytics"]
   },
   {
     title: "Mobile App Development",
     icon: Smartphone,
-    description:
-      "We create mobile applications that deliver seamless experiences across iOS and Android platforms.",
-    points: [
-      "Cross-platform mobile apps",
-      "Native iOS & Android development",
-      "App store deployment & maintenance",
-    ],
+    description: "We create mobile applications that deliver seamless experiences across iOS and Android platforms.",
+    points: ["Cross-platform mobile apps", "Native iOS & Android development", "App store deployment & maintenance"]
   },
   {
     title: "Data Analytics through Power BI",
     icon: BarChart3,
-    description:
-      "Data visualization and analytics workflows built with Power BI for actionable business intelligence.",
-    points: [
-      "Dashboard design & insights",
-      "Data modeling & transformation",
-      "Report publishing & automation",
-    ],
+    description: "Data visualization and analytics workflows built with Power BI for actionable business intelligence.",
+    points: ["Dashboard design & insights", "Data modeling & transformation", "Report publishing & automation"]
   },
   {
     title: "Data Analytics",
     icon: Monitor,
-    description:
-      "We provide comprehensive data analytics services to help businesses make informed decisions and drive growth.",
-    points: [
-      "Data collection & cleaning",
-      "Statistical analysis & reporting",
-      "Business intelligence & insights",
-    ],
+    description: "We provide comprehensive data analytics services to help businesses make informed decisions and drive growth.",
+    points: ["Data collection & cleaning", "Statistical analysis & reporting", "Business intelligence & insights"]
   },
   {
     title: "Custom Software Development",
     icon: Code,
-    description:
-      "Bespoke software solutions tailored to your business goals, from enterprise systems to SaaS platforms.",
-    points: [
-      "Full-stack application development",
-      "API design & integration",
-      "Scalable system architecture",
-    ],
-  },
+    description: "Bespoke software solutions tailored to your business goals, from enterprise systems to SaaS platforms.",
+    points: ["Full-stack application development", "API design & integration", "Scalable system architecture"]
+  }
 ];
 
 function ServiceCard({ service }) {
@@ -138,8 +100,7 @@ export default function WhatWeDoSection() {
         <h2 className="what-we-do-title">Six Disciplines, One Stack</h2>
 
         <p className="what-we-do-subtitle">
-          Trust <span className="what-we-do-dot">·</span> Build{" "}
-          <span className="what-we-do-dot">·</span> Innovate
+          Trust <span className="what-we-do-dot">·</span> Build <span className="what-we-do-dot">·</span> Innovate
         </p>
 
         {/* Services */}

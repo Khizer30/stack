@@ -11,13 +11,7 @@ function App() {
     <HelmetProvider>
       <BrowserRouter>
         <ScrollToTop />
-        <ClickSpark
-          sparkColor="#ffffff"
-          sparkSize={10}
-          sparkRadius={15}
-          sparkCount={8}
-          duration={400}
-        >
+        <ClickSpark sparkColor="#ffffff" sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
           <MainLayout>
             <AppRoutes />
           </MainLayout>

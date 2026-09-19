@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import {
   Code2,
@@ -20,7 +20,7 @@ import {
   MapPin,
   Send,
   CheckCircle2,
-  ArrowRight,
+  ArrowRight
 } from "lucide-react";
 import "./TrainingsAndWorkshops.css";
 import EnrollmentModal from "./components/EnrollmentModal";
@@ -43,58 +43,50 @@ const COURSES = [
     icon: Terminal,
     level: "6 Months",
     title: "AI Mastery Program",
-    description:
-      "Learn programming from the fundamentals to advanced concepts and build real-world AI models and intelligent applications.",
+    description: "Learn programming from the fundamentals to advanced concepts and build real-world AI models and intelligent applications."
   },
   {
     icon: Layers,
     level: "6 Months",
     title: "Full Stack Web Development",
-    description:
-      "Master frontend, backend, databases, APIs, and modern development tools to build complete professional web applications.",
+    description: "Master frontend, backend, databases, APIs, and modern development tools to build complete professional web applications."
   },
   {
     icon: BrainCircuit,
     level: "2 Months",
     title: "AI Prompt Engineering",
-    description:
-      "Learn to write powerful prompts, use advanced AI tools, and create reliable outputs for real-world tasks.",
+    description: "Learn to write powerful prompts, use advanced AI tools, and create reliable outputs for real-world tasks."
   },
   {
     icon: Clapperboard,
     level: "4 Months",
     title: "Video Editing & Content Creation ",
-    description:
-      "Master CapCut, Premiere Pro, After Effects, scripting, recording, storytelling, and content creation for social media.",
+    description: "Master CapCut, Premiere Pro, After Effects, scripting, recording, storytelling, and content creation for social media."
   },
   {
     icon: TvMinimalPlay,
     level: "3 Months",
     title: "Digital Marketing",
-    description:
-      "Learn social media marketing, SEO, content strategy, advertising, audience growth, and digital campaigns for businesses.",
+    description: "Learn social media marketing, SEO, content strategy, advertising, audience growth, and digital campaigns for businesses."
   },
   {
     icon: Code2,
     level: "3 Months",
     title: "Advanced Python Programming",
-    description:
-      " Master advanced Python programming, automation, problem-solving, and real-world application development through practical projects.",
+    description: " Master advanced Python programming, automation, problem-solving, and real-world application development through practical projects."
   },
   {
     icon: Computer,
     level: "3 Months",
     title: "Professional IT Skills",
-    description:
-      "Master typing, Microsoft Word, Excel, PowerPoint, essential computer skills, and practical AI tools for work.",
+    description: "Master typing, Microsoft Word, Excel, PowerPoint, essential computer skills, and practical AI tools for work."
   },
   {
     icon: PenTool,
     level: "2 Months",
     title: "Client Acquisition & Freelancing",
-    description:
-      "Learn LinkedIn outreach, lead generation, freelancing, client communication, proposals, follow-ups, and strategies to win clients.",
-  },
+    description: "Learn LinkedIn outreach, lead generation, freelancing, client communication, proposals, follow-ups, and strategies to win clients."
+  }
 ];
 
 const FACULTY = [
@@ -102,63 +94,63 @@ const FACULTY = [
     name: "Mubeen Tariq",
     designation: "Motion Animations & Marketing Trainer",
     experience: "4+ years experience",
-    image: mubeenImg,
+    image: mubeenImg
   },
   {
     name: "Muhammad Hamza",
     designation: "AI & Data Science/Data Analytics Trainer",
     experience: "4+ years experience",
-    image: hamzaImg,
+    image: hamzaImg
   },
   {
     name: "Muhammad Khizer",
     designation: "Machine Learning & Web Development Trainer",
     experience: "4+ years experience",
-    image: khizerImg,
+    image: khizerImg
   },
   {
     name: "Meesum Raza",
     designation: "IT & Freelancing Trainer",
     experience: "4+ years experience",
-    image: meesumImg,
-  },
+    image: meesumImg
+  }
 ];
 
 const amenities = [
   {
     icon: Sofa,
-    title: "Student Lounge",
+    title: "Student Lounge"
   },
   {
     icon: Wifi,
-    title: "High-Speed Internet",
+    title: "High-Speed Internet"
   },
   {
     icon: ParkingCircle,
-    title: "Free Parking",
+    title: "Free Parking"
   },
   {
     icon: ShieldCheck,
-    title: "24/7 Security",
-  },
+    title: "24/7 Security"
+  }
 ];
 
 const slides = [
   {
     image: stdImg,
     title: "Modern Classrooms",
-    desc: "Interactive learning environment",
+    desc: "Interactive learning environment"
   },
   {
     image: "",
     title: "Collaborative Workspace",
-    desc: "Learn together and build together",
+    desc: "Learn together and build together"
   },
   {
     image: "",
     title: "Professional Campus",
-    desc: "Designed for future developers",
-  },
+    desc: "Designed for future developers"
+  }
 ];
 
 function useBrandFonts() {
@@ -168,33 +160,16 @@ function useBrandFonts() {
     const link = document.createElement("link");
     link.id = id;
     link.rel = "stylesheet";
-    link.href =
-      "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap";
+    link.href = "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap";
     document.head.appendChild(link);
   }, []);
 }
 
 /** The stacked-triangle mark from the STACK logo, reused as a brand accent. */
 function StackMark({ size = 34 }) {
-  const bar = (w, y, opacity) => (
-    <rect
-      x={(64 - w) / 2}
-      y={y}
-      width={w}
-      height={9}
-      rx={1.5}
-      fill="#7c3aed"
-      opacity={opacity}
-    />
-  );
+  const bar = (w, y, opacity) => <rect x={(64 - w) / 2} y={y} width={w} height={9} rx={1.5} fill="#7c3aed" opacity={opacity} />;
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 64 64"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
       {bar(18, 8, 1)}
       {bar(30, 22, 0.85)}
       {bar(42, 36, 0.7)}
@@ -215,8 +190,7 @@ function SectionHeader({ eyebrow, heading, subheading, tagline }) {
       {subheading && <p className="tp-subheading">{subheading}</p>}
       {tagline && (
         <p className="tp-tagline">
-          Learn <span className="dot">·</span> Build{" "}
-          <span className="dot">·</span> Innovate
+          Learn <span className="dot">·</span> Build <span className="dot">·</span> Innovate
         </p>
       )}
     </>
@@ -231,9 +205,7 @@ function Hero() {
         <StackMark size={40} />
       </div>
       <h1 className="tp-hero-title">Training &amp; Workshops</h1>
-      <p className="tp-hero-subtitle">
-        Enjoy the STACK experience in every training section.
-      </p>
+      <p className="tp-hero-subtitle">Enjoy the STACK experience in every training section.</p>
       <a href="#course-catalog" className="tp-hero-cta">
         Explore Courses
         <ArrowRight size={15} strokeWidth={2.2} />
@@ -257,10 +229,7 @@ function CourseCatalog({ onEnroll }) {
             const Icon = course.icon;
             const isLastCard = index === COURSES.length - 1;
             return (
-              <div
-                className={`tp-card tp-course-card${isLastCard ? " course-card--last" : ""}`}
-                key={course.title}
-              >
+              <div className={`tp-card tp-course-card${isLastCard ? " course-card--last" : ""}`} key={course.title}>
                 <div className="course-icon-wrap">
                   <Icon size={22} strokeWidth={1.8} />
                 </div>
@@ -274,11 +243,7 @@ function CourseCatalog({ onEnroll }) {
                   <span>{course.format}</span>
                 </div>
                 <div className="course-actions">
-                  <button
-                    type="button"
-                    className="course-enroll-btn"
-                    onClick={() => onEnroll(course.title)}
-                  >
+                  <button type="button" className="course-enroll-btn" onClick={() => onEnroll(course.title)}>
                     Enroll Now
                   </button>
                 </div>
@@ -303,12 +268,7 @@ function FacultyAvatar({ name, image }) {
   return (
     <div className="faculty-avatar-wrap">
       {!failed ? (
-        <img
-          src={image}
-          alt={name}
-          className="faculty-avatar"
-          onError={() => setFailed(true)}
-        />
+        <img src={image} alt={name} className="faculty-avatar" onError={() => setFailed(true)} />
       ) : (
         <div className="faculty-avatar-fallback">{initials}</div>
       )}
@@ -347,12 +307,15 @@ function CampusExperience() {
   const [isAnimating, setIsAnimating] = useState(false);
   const transitionDuration = 450;
 
-  const changeSlide = (index) => {
-    if (index === active) return;
-    setPreviousActive(active);
-    setActive(index);
-    setIsAnimating(true);
-  };
+  const changeSlide = useCallback(
+    (index) => {
+      if (index === active) return;
+      setPreviousActive(active);
+      setActive(index);
+      setIsAnimating(true);
+    },
+    [active]
+  );
 
   const prev = () => {
     changeSlide(active === 0 ? slides.length - 1 : active - 1);
@@ -368,7 +331,7 @@ function CampusExperience() {
     }, 3000);
 
     return () => window.clearTimeout(autoAdvance);
-  }, [active]);
+  }, [active, changeSlide]);
 
   useEffect(() => {
     if (!isAnimating) return undefined;
@@ -399,9 +362,8 @@ function CampusExperience() {
             </h2>
 
             <p className="campus-description">
-              Enjoy a comfortable campus with modern lounges, high-speed
-              internet, free secure parking, and 24/7 security—everything you
-              need for a safe and productive learning experience.
+              Enjoy a comfortable campus with modern lounges, high-speed internet, free secure parking, and 24/7 security—everything you need for a safe and
+              productive learning experience.
             </p>
 
             <div className="amenities-grid">
@@ -421,19 +383,9 @@ function CampusExperience() {
 
           {/* Right Side */}
           <div className="slider">
-            {isAnimating && (
-              <img
-                src={slides[previousActive].image}
-                alt={slides[previousActive].title}
-                className="slider-image slider-image--fade-out"
-              />
-            )}
+            {isAnimating && <img src={slides[previousActive].image} alt={slides[previousActive].title} className="slider-image slider-image--fade-out" />}
 
-            <img
-              src={slides[active].image}
-              alt={slides[active].title}
-              className={`slider-image${isAnimating ? " slider-image--fade-in" : ""}`}
-            />
+            <img src={slides[active].image} alt={slides[active].title} className={`slider-image${isAnimating ? " slider-image--fade-in" : ""}`} />
 
             <div className="slider-overlay"></div>
 
@@ -453,11 +405,7 @@ function CampusExperience() {
 
             <div className="slider-dots">
               {slides.map((_, index) => (
-                <span
-                  key={index}
-                  className={`slider-dot ${active === index ? "active" : ""}`}
-                  onClick={() => setActive(index)}
-                />
+                <span key={index} className={`slider-dot ${active === index ? "active" : ""}`} onClick={() => setActive(index)} />
               ))}
             </div>
           </div>
@@ -484,24 +432,21 @@ function GetInTouch({ initialCourse, sectionRef }) {
     phone: "",
     email: "",
     course: initialCourse || COURSES[0].title,
-    message: "",
+    message: ""
   });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle"); // idle | submitting | success | error
   const [submitError, setSubmitError] = useState("");
 
-  const update = (key) => (e) =>
-    setForm((f) => ({ ...f, [key]: e.target.value }));
+  const update = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
 
   const validate = () => {
     const next = {};
     if (!form.name.trim()) next.name = "Please enter your name.";
     if (!form.phone.trim()) next.phone = "Please enter a phone number.";
     if (!form.email.trim()) next.email = "Please enter your email.";
-    else if (!/^\S+@\S+\.\S+$/.test(form.email))
-      next.email = "That email doesn't look right.";
-    if (!form.message.trim())
-      next.message = "Tell us a little about what you're looking for.";
+    else if (!/^\S+@\S+\.\S+$/.test(form.email)) next.email = "That email doesn't look right.";
+    if (!form.message.trim()) next.message = "Tell us a little about what you're looking for.";
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -529,7 +474,7 @@ function GetInTouch({ initialCourse, sectionRef }) {
         service_name: form.course,
         message: form.message,
         project_details: form.message,
-        submitted_at: new Date().toLocaleString(),
+        submitted_at: new Date().toLocaleString()
       });
 
       setStatus("success");
@@ -539,22 +484,16 @@ function GetInTouch({ initialCourse, sectionRef }) {
         phone: "",
         email: "",
         course: COURSES[0].title,
-        message: "",
+        message: ""
       });
     } catch (error) {
       setStatus("error");
-      setSubmitError(
-        error?.message || "Unable to send inquiry. Please try again later.",
-      );
+      setSubmitError(error?.message || "Unable to send inquiry. Please try again later.");
     }
   };
 
   return (
-    <section
-      className="tp-section tp-section--alt"
-      id="get-in-touch"
-      ref={sectionRef}
-    >
+    <section className="tp-section tp-section--alt" id="get-in-touch" ref={sectionRef}>
       <div className="tp-inner">
         <SectionHeader
           eyebrow="Get In Touch"
@@ -566,10 +505,7 @@ function GetInTouch({ initialCourse, sectionRef }) {
           {/* left: contact info + map */}
           <div className="contact-info-card">
             <h3 className="contact-info-heading">Contact info</h3>
-            <p className="contact-info-blurb">
-              Reach out directly, or visit the campus — we're happy to walk you
-              through the course that fits best.
-            </p>
+            <p className="contact-info-blurb">Reach out directly, or visit the campus — we're happy to walk you through the course that fits best.</p>
 
             <div className="contact-info-list">
               <a href="mailto:info@stack.pk" className="contact-info-item">
@@ -577,10 +513,7 @@ function GetInTouch({ initialCourse, sectionRef }) {
                   <Mail size={16} strokeWidth={1.8} />
                 </span>
                 <span>
-                  <span
-                    className="contact-info-label"
-                    style={{ display: "block" }}
-                  >
+                  <span className="contact-info-label" style={{ display: "block" }}>
                     Email
                   </span>
                   <span className="contact-info-value">info@stack.pk</span>
@@ -591,10 +524,7 @@ function GetInTouch({ initialCourse, sectionRef }) {
                   <Phone size={16} strokeWidth={1.8} />
                 </span>
                 <span>
-                  <span
-                    className="contact-info-label"
-                    style={{ display: "block" }}
-                  >
+                  <span className="contact-info-label" style={{ display: "block" }}>
                     Phone
                   </span>
                   <span className="contact-info-value">+92 339 0086967</span>
@@ -605,15 +535,10 @@ function GetInTouch({ initialCourse, sectionRef }) {
                   <MapPin size={16} strokeWidth={1.8} />
                 </span>
                 <span>
-                  <span
-                    className="contact-info-label"
-                    style={{ display: "block" }}
-                  >
+                  <span className="contact-info-label" style={{ display: "block" }}>
                     Campus
                   </span>
-                  <span className="contact-info-value">
-                    DHA Residencia DHA 2, Islamabad
-                  </span>
+                  <span className="contact-info-value">DHA Residencia DHA 2, Islamabad</span>
                 </span>
               </div>
             </div>
@@ -636,20 +561,10 @@ function GetInTouch({ initialCourse, sectionRef }) {
           <div className="contact-form-card">
             {status === "success" ? (
               <div className="tp-success-state">
-                <CheckCircle2
-                  size={38}
-                  strokeWidth={1.6}
-                  className="tp-success-icon"
-                />
+                <CheckCircle2 size={38} strokeWidth={1.6} className="tp-success-icon" />
                 <h3 className="tp-success-title">Inquiry sent</h3>
-                <p className="tp-success-desc">
-                  Thanks for reaching out — we'll follow up with course details
-                  and the next intake date shortly.
-                </p>
-                <button
-                  className="tp-success-retry"
-                  onClick={() => setStatus("idle")}
-                >
+                <p className="tp-success-desc">Thanks for reaching out — we'll follow up with course details and the next intake date shortly.</p>
+                <button className="tp-success-retry" onClick={() => setStatus("idle")}>
                   Send another inquiry
                 </button>
               </div>
@@ -687,11 +602,7 @@ function GetInTouch({ initialCourse, sectionRef }) {
                     />
                   </Field>
                   <Field label="Course of interest">
-                    <select
-                      value={form.course}
-                      onChange={update("course")}
-                      className="tp-field-input"
-                    >
+                    <select value={form.course} onChange={update("course")} className="tp-field-input">
                       {COURSES.map((c) => (
                         <option key={c.title} value={c.title}>
                           {c.title}
@@ -713,19 +624,11 @@ function GetInTouch({ initialCourse, sectionRef }) {
                   </Field>
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={status === "submitting"}
-                  className="tp-submit-btn"
-                >
+                <button type="submit" disabled={status === "submitting"} className="tp-submit-btn">
                   {status === "submitting" ? "Sending..." : "Send inquiry"}
-                  {status !== "submitting" && (
-                    <Send size={15} strokeWidth={2.2} />
-                  )}
+                  {status !== "submitting" && <Send size={15} strokeWidth={2.2} />}
                 </button>
-                {status === "error" && (
-                  <p className="tp-submit-error">{submitError}</p>
-                )}
+                {status === "error" && <p className="tp-submit-error">{submitError}</p>}
               </form>
             )}
           </div>
@@ -763,11 +666,7 @@ export default function TrainingPage() {
       <Faculty />
       <CampusExperience />
       <GetInTouch />
-      <EnrollmentModal
-        open={isModalOpen}
-        course={selectedCourse}
-        onClose={closeEnrollment}
-      />
+      <EnrollmentModal open={isModalOpen} course={selectedCourse} onClose={closeEnrollment} />
     </div>
   );
 }

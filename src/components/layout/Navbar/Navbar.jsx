@@ -27,13 +27,7 @@ const Navbar = () => {
     if (!isTrainingPage) return undefined;
 
     const updateActiveSection = () => {
-      const sections = [
-        "#top",
-        "#course-catalog",
-        "#faculty",
-        "#campus-experience",
-        "#get-in-touch",
-      ];
+      const sections = ["#top", "#course-catalog", "#faculty", "#campus-experience", "#get-in-touch"];
       const offset = window.scrollY + 180;
       let currentSection = "#top";
 
@@ -102,7 +96,7 @@ const Navbar = () => {
               paddingBlock: scrolled ? 14 : 18,
               paddingInline: scrolled ? 18 : 24,
               scale: scrolled ? 0.994 : 1,
-              y: scrolled ? 1 : 0,
+              y: scrolled ? 1 : 0
             }}
             transition={{ type: "spring", stiffness: 220, damping: 24 }}
             className="
@@ -121,38 +115,19 @@ const Navbar = () => {
               lg:flex
             "
           >
-            <NavLinks
-              links={visibleLinks}
-              activeHref={activeHref}
-              onNavigate={handleNavigate}
-            />
+            <NavLinks links={visibleLinks} activeHref={activeHref} onNavigate={handleNavigate} />
           </motion.div>
 
           <div className="navbar-actions flex items-center justify-self-end min-w-0">
             <div className="hidden lg:flex min-w-0">
-              <CTAButton
-                href="/training"
-                label={"Trainings &\nWorkshops"}
-                variant="desktop"
-                target="_blank"
-                rel="noopener noreferrer"
-              />
+              <CTAButton href="/training" label={"Trainings &\nWorkshops"} variant="desktop" target="_blank" rel="noopener noreferrer" />
             </div>
 
-            <SearchButton
-              open={mobileOpen}
-              onClick={() => setMobileOpen((current) => !current)}
-            />
+            <SearchButton open={mobileOpen} onClick={() => setMobileOpen((current) => !current)} />
           </div>
         </div>
 
-        <MobileMenu
-          open={mobileOpen}
-          activeHref={activeHref}
-          links={visibleLinks}
-          onNavigate={handleNavigate}
-          onClose={() => setMobileOpen(false)}
-        />
+        <MobileMenu open={mobileOpen} activeHref={activeHref} links={visibleLinks} onNavigate={handleNavigate} onClose={() => setMobileOpen(false)} />
       </motion.div>
     </header>
   );

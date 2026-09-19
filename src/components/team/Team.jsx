@@ -18,8 +18,8 @@ const TEAM = [
     bio: "Turns product requirements and rough wireframes into fast, full-stack applications.",
     links: {
       linkedin: "https://www.linkedin.com/in/muhammad-zain-maqbool-7b7127320",
-      github: "https://github.com/chzain2005",
-    },
+      github: "https://github.com/chzain2005"
+    }
   },
   {
     name: "Aseef Ahmed Khawaja",
@@ -29,8 +29,8 @@ const TEAM = [
     bio: "Crafts stunning visual identities and builds the full-stack code behind them.",
     links: {
       linkedin: "https://www.linkedin.com/in/aseef-ahmed-9340aa353/",
-      github: "https://github.com/aseefahmed23",
-    },
+      github: "https://github.com/aseefahmed23"
+    }
   },
   {
     name: "Asad Tariq",
@@ -40,8 +40,8 @@ const TEAM = [
     bio: "Shapes visual identity across every client engagement.",
     links: {
       linkedin: "https://www.linkedin.com/in/asad-tariq-334740378/",
-      github: "https://github.com/asadtariq",
-    },
+      github: "https://github.com/asadtariq"
+    }
   },
   {
     name: "Khizer",
@@ -51,8 +51,8 @@ const TEAM = [
     bio: "Turns abstract product requirements into clean, maintainable code.",
     links: {
       linkedin: "https://www.linkedin.com/in/khizer30/",
-      github: null,
-    },
+      github: null
+    }
   },
   {
     name: "Meesam Raza",
@@ -62,9 +62,9 @@ const TEAM = [
     bio: "Coordinates and manages projects, ensuring timely delivery and quality.",
     links: {
       linkedin: null,
-      github: null,
-    },
-  },
+      github: null
+    }
+  }
 ];
 
 function Avatar({ name, image }) {
@@ -116,20 +116,10 @@ function TeamCard({ member }) {
         <p className="member-bio">{member.bio}</p>
 
         <div className="social-links">
-          <a
-            href={member.links.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-          >
+          <a href={member.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <img src={linkedinIcon} alt="LinkedIn icon" />
           </a>
-          <a
-            href={member.links.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-          >
+          <a href={member.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <img src={githubIcon} alt="GitHub icon" />
           </a>
         </div>
@@ -151,8 +141,7 @@ export default function TeamSection() {
         <h2 className="team-title">Meet the People Behind the Build</h2>
 
         <p className="team-subtitle">
-          Design <span className="dot">•</span> Code{" "}
-          <span className="dot">•</span> Ship
+          Design <span className="dot">•</span> Code <span className="dot">•</span> Ship
         </p>
 
         <div className="team-grid">

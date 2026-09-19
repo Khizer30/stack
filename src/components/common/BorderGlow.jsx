@@ -6,7 +6,7 @@ function parseHSL(hslStr) {
   return {
     h: parseFloat(match[1]),
     s: parseFloat(match[2]),
-    l: parseFloat(match[3]),
+    l: parseFloat(match[3])
   };
 }
 
@@ -26,7 +26,7 @@ function buildBoxShadow(glowColor, intensity) {
     [0, 0, 6, 0, 40, false],
     [0, 0, 15, 0, 30, false],
     [0, 0, 25, 2, 20, false],
-    [0, 0, 50, 2, 10, false],
+    [0, 0, 50, 2, 10, false]
   ];
   return layers
     .map(([x, y, blur, spread, alpha, inset]) => {
@@ -44,15 +44,7 @@ function easeInCubic(x) {
   return x * x * x;
 }
 
-function animateValue({
-  start = 0,
-  end = 100,
-  duration = 1000,
-  delay = 0,
-  ease = easeOutCubic,
-  onUpdate,
-  onEnd,
-}) {
+function animateValue({ start = 0, end = 100, duration = 1000, delay = 0, ease = easeOutCubic, onUpdate, onEnd }) {
   const t0 = performance.now() + delay;
 
   function tick() {
@@ -66,24 +58,14 @@ function animateValue({
   setTimeout(() => requestAnimationFrame(tick), delay);
 }
 
-const GRADIENT_POSITIONS = [
-  "80% 55%",
-  "69% 34%",
-  "8% 6%",
-  "41% 38%",
-  "86% 85%",
-  "82% 18%",
-  "51% 4%",
-];
+const GRADIENT_POSITIONS = ["80% 55%", "69% 34%", "8% 6%", "41% 38%", "86% 85%", "82% 18%", "51% 4%"];
 const COLOR_MAP = [0, 1, 2, 0, 1, 2, 1];
 
 function buildMeshGradients(colors) {
   const gradients = [];
   for (let i = 0; i < 7; i++) {
     const c = colors[Math.min(COLOR_MAP[i], colors.length - 1)];
-    gradients.push(
-      `radial-gradient(at ${GRADIENT_POSITIONS[i]}, ${c} 0px, transparent 50%)`,
-    );
+    gradients.push(`radial-gradient(at ${GRADIENT_POSITIONS[i]}, ${c} 0px, transparent 50%)`);
   }
   gradients.push(`linear-gradient(${colors[0]} 0 100%)`);
   return gradients;
@@ -101,7 +83,7 @@ const BorderGlow = ({
   coneSpread = 25,
   animated = false,
   colors = ["#c084fc", "#f472b6", "#38bdf8"],
-  fillOpacity = 0.5,
+  fillOpacity = 0.5
 }) => {
   const cardRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -125,7 +107,7 @@ const BorderGlow = ({
       if (dy !== 0) ky = cy / Math.abs(dy);
       return Math.min(Math.max(1 / Math.min(kx, ky), 0), 1);
     },
-    [getCenterOfElement],
+    [getCenterOfElement]
   );
 
   const getCursorAngle = useCallback(
@@ -139,7 +121,7 @@ const BorderGlow = ({
       if (degrees < 0) degrees += 360;
       return degrees;
     },
-    [getCenterOfElement],
+    [getCenterOfElement]
   );
 
   const handlePointerMove = useCallback(
@@ -152,7 +134,7 @@ const BorderGlow = ({
       setEdgeProximity(getEdgeProximity(card, x, y));
       setCursorAngle(getCursorAngle(card, x, y));
     },
-    [getEdgeProximity, getCursorAngle],
+    [getEdgeProximity, getCursorAngle]
   );
 
   useEffect(() => {
@@ -171,7 +153,7 @@ const BorderGlow = ({
       end: 50,
       onUpdate: (v) => {
         setCursorAngle((angleEnd - angleStart) * (v / 100) + angleStart);
-      },
+      }
     });
     animateValue({
       ease: easeOutCubic,
@@ -181,7 +163,7 @@ const BorderGlow = ({
       end: 100,
       onUpdate: (v) => {
         setCursorAngle((angleEnd - angleStart) * (v / 100) + angleStart);
-      },
+      }
     });
     animateValue({
       ease: easeInCubic,
@@ -190,24 +172,14 @@ const BorderGlow = ({
       start: 100,
       end: 0,
       onUpdate: (v) => setEdgeProximity(v / 100),
-      onEnd: () => setSweepActive(false),
+      onEnd: () => setSweepActive(false)
     });
   }, [animated]);
 
   const colorSensitivity = edgeSensitivity + 20;
   const isVisible = isHovered || sweepActive;
-  const borderOpacity = isVisible
-    ? Math.max(
-        0,
-        (edgeProximity * 100 - colorSensitivity) / (100 - colorSensitivity),
-      )
-    : 0;
-  const glowOpacity = isVisible
-    ? Math.max(
-        0,
-        (edgeProximity * 100 - edgeSensitivity) / (100 - edgeSensitivity),
-      )
-    : 0;
+  const borderOpacity = isVisible ? Math.max(0, (edgeProximity * 100 - colorSensitivity) / (100 - colorSensitivity)) : 0;
+  const glowOpacity = isVisible ? Math.max(0, (edgeProximity * 100 - edgeSensitivity) / (100 - edgeSensitivity)) : 0;
 
   const meshGradients = buildMeshGradients(colors);
   const borderBg = meshGradients.map((g) => `${g} border-box`);
@@ -226,24 +198,20 @@ const BorderGlow = ({
         borderRadius: `${borderRadius}px`,
         transform: "translate3d(0, 0, 0.01px)",
         boxShadow:
-          "rgba(0,0,0,0.1) 0 1px 2px, rgba(0,0,0,0.1) 0 2px 4px, rgba(0,0,0,0.1) 0 4px 8px, rgba(0,0,0,0.1) 0 8px 16px, rgba(0,0,0,0.1) 0 16px 32px, rgba(0,0,0,0.1) 0 32px 64px",
+          "rgba(0,0,0,0.1) 0 1px 2px, rgba(0,0,0,0.1) 0 2px 4px, rgba(0,0,0,0.1) 0 4px 8px, rgba(0,0,0,0.1) 0 8px 16px, rgba(0,0,0,0.1) 0 16px 32px, rgba(0,0,0,0.1) 0 32px 64px"
       }}
     >
       <div
         className="absolute inset-0 rounded-[inherit] z-[-1]"
         style={{
           border: "1px solid transparent",
-          background: [
-            `linear-gradient(${backgroundColor} 0 100%) padding-box`,
-            "linear-gradient(rgb(255 255 255 / 0%) 0% 100%) border-box",
-            ...borderBg,
-          ].join(", "),
+          background: [`linear-gradient(${backgroundColor} 0 100%) padding-box`, "linear-gradient(rgb(255 255 255 / 0%) 0% 100%) border-box", ...borderBg].join(
+            ", "
+          ),
           opacity: borderOpacity,
           maskImage: `conic-gradient(from ${angleDeg} at center, black ${coneSpread}%, transparent ${coneSpread + 15}%, transparent ${100 - coneSpread - 15}%, black ${100 - coneSpread}%)`,
           WebkitMaskImage: `conic-gradient(from ${angleDeg} at center, black ${coneSpread}%, transparent ${coneSpread + 15}%, transparent ${100 - coneSpread - 15}%, black ${100 - coneSpread}%)`,
-          transition: isVisible
-            ? "opacity 0.25s ease-out"
-            : "opacity 0.75s ease-in-out",
+          transition: isVisible ? "opacity 0.25s ease-out" : "opacity 0.75s ease-in-out"
         }}
       />
 
@@ -259,7 +227,7 @@ const BorderGlow = ({
             "radial-gradient(ellipse at 33% 33%, black 5%, transparent 40%)",
             "radial-gradient(ellipse at 66% 33%, black 5%, transparent 40%)",
             "radial-gradient(ellipse at 33% 66%, black 5%, transparent 40%)",
-            `conic-gradient(from ${angleDeg} at center, transparent 5%, black 15%, black 85%, transparent 95%)`,
+            `conic-gradient(from ${angleDeg} at center, transparent 5%, black 15%, black 85%, transparent 95%)`
           ].join(", "),
           WebkitMaskImage: [
             "linear-gradient(to bottom, black, black)",
@@ -268,16 +236,13 @@ const BorderGlow = ({
             "radial-gradient(ellipse at 33% 33%, black 5%, transparent 40%)",
             "radial-gradient(ellipse at 66% 33%, black 5%, transparent 40%)",
             "radial-gradient(ellipse at 33% 66%, black 5%, transparent 40%)",
-            `conic-gradient(from ${angleDeg} at center, transparent 5%, black 15%, black 85%, transparent 95%)`,
+            `conic-gradient(from ${angleDeg} at center, transparent 5%, black 15%, black 85%, transparent 95%)`
           ].join(", "),
           maskComposite: "subtract, add, add, add, add, add",
-          WebkitMaskComposite:
-            "source-out, source-over, source-over, source-over, source-over, source-over",
+          WebkitMaskComposite: "source-out, source-over, source-over, source-over, source-over, source-over",
           opacity: borderOpacity * fillOpacity,
           mixBlendMode: "soft-light",
-          transition: isVisible
-            ? "opacity 0.25s ease-out"
-            : "opacity 0.75s ease-in-out",
+          transition: isVisible ? "opacity 0.25s ease-out" : "opacity 0.75s ease-in-out"
         }}
       />
 
@@ -289,16 +254,14 @@ const BorderGlow = ({
           WebkitMaskImage: `conic-gradient(from ${angleDeg} at center, black 2.5%, transparent 10%, transparent 90%, black 97.5%)`,
           opacity: glowOpacity,
           mixBlendMode: "plus-lighter",
-          transition: isVisible
-            ? "opacity 0.25s ease-out"
-            : "opacity 0.75s ease-in-out",
+          transition: isVisible ? "opacity 0.25s ease-out" : "opacity 0.75s ease-in-out"
         }}
       >
         <span
           className="absolute rounded-[inherit]"
           style={{
             inset: `${glowRadius}px`,
-            boxShadow: buildBoxShadow(glowColor, glowIntensity),
+            boxShadow: buildBoxShadow(glowColor, glowIntensity)
           }}
         />
       </span>
