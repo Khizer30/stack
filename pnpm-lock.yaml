@@ -66,8 +66,8 @@ importers:
         specifier: ^4.13.0
         version: 4.15.0
       swiper:
-        specifier: ^14.0.1
-        version: 14.0.6
+        specifier: ^14.0.7
+        version: 14.2.0
       tailwind-merge:
         specifier: ^3.6.0
         version: 3.6.0
@@ -2192,8 +2192,8 @@ packages:
     resolution: {integrity: sha512-aulFJcD6YK8V1G7iRB5tigAP4TsHBZZrOV8pjV++zdUwmeV8uzbY7yn6h9MswN62adStNZFuCIx4haBnRuMDaw==}
     engines: {node: '>=18'}
 
-  swiper@14.0.6:
-    resolution: {integrity: sha512-ArptjmcZMBvpLCbvzSKuqvQpjjITCbZdymiGOrbZQffQ3ZSjgpvMByXX0WZBUt+FV4PPIumdYfZ9ZdBbFsdH6g==}
+  swiper@14.2.0:
+    resolution: {integrity: sha512-GsL4M9Fq7Sg22OyL3SjdNj/0bxTfIxPJJHHW394Li0u5vYtExi0a09iBUc8CuLafJi5pAlH2AHUe1PocxHl45g==}
     engines: {node: '>= 4.7.0'}
 
   systeminformation@5.33.1:
@@ -4309,7 +4309,7 @@ snapshots:
 
   strip-final-newline@4.0.0: {}
 
-  swiper@14.0.6: {}
+  swiper@14.2.0: {}
 
   systeminformation@5.33.1: {}
 
