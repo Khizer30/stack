@@ -1,0 +1,39 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: clamp(4rem, 10vw, 9rem);
+}
+
+h2 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+h3 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+}

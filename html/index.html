@@ -1,0 +1,1284 @@
+<title>Career Tracks</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  /* Layout: hero with a live "track board" beside the hookline; tracks as a 3-up grid; each track opens its own hash-routed page with a sticky WhatsApp rail. */
+  :root {
+    /* Brand look from stackpk.com: deep violet into midnight, lavender accent, white pill buttons. Single dark theme by choice. */
+    --bg: #06051A;
+    --surface: #110D2B;
+    --surface-2: #18123A;
+    --ink: #F4F1FF;
+    --muted: #A8A2C8;
+    --line: #2A2352;
+    --accent: #9B7BF0;
+    --accent-2: #C4B2FA;
+    --accent-ink: #0B0920;
+    --violet-deep: #2B0E63;
+    --btn: #F4F1FF;
+    --btn-ink: #0B0920;
+    --wa: #25D366;
+    --mark: #9B7BF0;
+    --web: #8EA2FF;
+    --ai: #B794FF;
+    --agent: #E58CFF;
+    --display: "Space Grotesk", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+    --body: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 20px 50px -20px rgba(43, 14, 99, .8);
+    color-scheme: dark;
+  }
+
+  * {
+    box-sizing: border-box
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto;
+    height: env(safe-area-inset-top, 0px);
+    z-index: 60;
+    background: var(--bg)
+  }
+
+  a {
+    color: inherit
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--display);
+    line-height: 1.05;
+    letter-spacing: -.02em;
+    text-wrap: balance;
+    margin: 0
+  }
+
+  p {
+    margin: 0
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+    padding-right: max(20px, env(safe-area-inset-right, 0px))
+  }
+
+  .eyebrow {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--muted)
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 8px
+  }
+
+  /* Nav */
+  .nav {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line)
+  }
+
+  .nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-block: 14px
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 20px;
+    text-decoration: none;
+    letter-spacing: -.02em
+  }
+
+  .logo-mark {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, var(--accent-2), var(--accent));
+    color: var(--accent-ink);
+    display: grid;
+    place-items: center;
+    font-family: var(--mono);
+    font-size: 13px
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    align-items: center
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 15px
+  }
+
+  .nav-links a:hover {
+    color: var(--ink)
+  }
+
+  .nav-links a.btn,
+  .nav-links a.btn:hover {
+    color: var(--btn-ink);
+    white-space: nowrap
+  }
+
+  @media (max-width:760px) {
+    .nav-links a.btn {
+      display: none
+    }
+  }
+
+  @media (max-width:760px) {
+    .nav-links a:not(.btn) {
+      display: none
+    }
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 0;
+    border-radius: 999px;
+    padding: 14px 22px;
+    font: 700 16px/1 var(--body);
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s
+  }
+
+  .btn:hover {
+    transform: translateY(-1px)
+  }
+
+  .btn-wa {
+    background: var(--btn);
+    color: var(--btn-ink);
+    box-shadow: 0 10px 30px -12px color-mix(in srgb, var(--accent) 80%, transparent)
+  }
+
+  .btn-wa svg {
+    color: #128C4A
+  }
+
+  .btn-wa:hover {
+    box-shadow: 0 14px 36px -10px color-mix(in srgb, var(--accent) 90%, transparent)
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--line)
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--accent-2)
+  }
+
+  .btn-sm {
+    padding: 10px 16px;
+    font-size: 14px
+  }
+
+  .btn svg {
+    width: 20px;
+    height: 20px;
+    flex: none
+  }
+
+  /* Hero */
+  .hero {
+    padding-block: 80px 72px;
+    background: radial-gradient(120% 90% at 0% 0%, var(--violet-deep) 0%, transparent 60%), linear-gradient(180deg, color-mix(in srgb, var(--violet-deep) 45%, var(--bg)) 0%, var(--bg) 100%)
+  }
+
+  .hero .wrap {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 56px;
+    align-items: center
+  }
+
+  .hero h1 {
+    font-size: clamp(44px, 7vw, 88px);
+    font-weight: 800;
+    letter-spacing: -.035em
+  }
+
+  .hero h1 .hl {
+    white-space: nowrap;
+    background: linear-gradient(90deg, var(--accent-2), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent
+  }
+
+  /* removed marker */
+  .hero h1 .hl-unused::after {
+    content: "";
+    position: absolute;
+    left: -.06em;
+    right: -.06em;
+    bottom: .08em;
+    height: .32em;
+    background: var(--mark);
+    z-index: -1;
+    border-radius: 4px;
+    transform: skewX(-8deg);
+    transform-origin: left;
+    animation: mark .7s .25s cubic-bezier(.2, .8, .2, 1) both
+  }
+
+  @keyframes mark {
+    from {
+      transform: skewX(-8deg) scaleX(0)
+    }
+
+    to {
+      transform: skewX(-8deg) scaleX(1)
+    }
+  }
+
+  .hero-sub {
+    margin-top: 24px;
+    font-size: clamp(18px, 2vw, 21px);
+    color: var(--muted);
+    max-width: 34ch
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 34px
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin-top: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--muted)
+  }
+
+  .hero-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px
+  }
+
+  .hero-meta i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block
+  }
+
+  .board {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    padding: 10px;
+    min-width: 0
+  }
+
+  .board-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px 10px
+  }
+
+  .board-row {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 14px;
+    align-items: center;
+    padding: 14px;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: background .15s
+  }
+
+  .board-row:hover {
+    background: color-mix(in srgb, var(--c) 9%, transparent)
+  }
+
+  .board-row+.board-row {
+    border-top: 1px dashed var(--line)
+  }
+
+  .board-row strong {
+    display: block;
+    font-family: var(--display);
+    font-size: 19px;
+    letter-spacing: -.01em
+  }
+
+  .board-row small {
+    color: var(--muted);
+    font-size: 13.5px
+  }
+
+  .chip {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    background: color-mix(in srgb, var(--c) 14%, transparent);
+    color: var(--c)
+  }
+
+  .chip svg {
+    width: 22px;
+    height: 22px
+  }
+
+  .dur {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums
+  }
+
+  @media (max-width:900px) {
+    .hero .wrap {
+      grid-template-columns: 1fr;
+      gap: 40px
+    }
+
+    .hero {
+      padding-block: 44px 40px
+    }
+  }
+
+  /* Sections */
+  section {
+    padding-block: 72px;
+    scroll-margin-top: 72px
+  }
+
+  .sec-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 36px
+  }
+
+  .sec-head h2 {
+    font-size: clamp(32px, 4.4vw, 52px);
+    font-weight: 800
+  }
+
+  .sec-head p {
+    color: var(--muted);
+    max-width: 44ch
+  }
+
+  .tracks {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px
+  }
+
+  @media (max-width:980px) {
+    .tracks {
+      grid-template-columns: 1fr
+    }
+  }
+
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 28px;
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+    border-color: color-mix(in srgb, var(--c) 45%, var(--line))
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px
+  }
+
+  .card h3 {
+    font-size: clamp(26px, 2.6vw, 32px);
+    font-weight: 800
+  }
+
+  .card p {
+    color: var(--muted)
+  }
+
+  .card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px
+  }
+
+  .tag {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--c) 16%, transparent);
+    color: var(--ink)
+  }
+
+  .card .more {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    color: var(--c)
+  }
+
+  .card .more span {
+    transition: transform .2s
+  }
+
+  .card:hover .more span {
+    transform: translateX(4px)
+  }
+
+  .card-glyph {
+    position: absolute;
+    right: -12px;
+    bottom: -26px;
+    font-family: var(--mono);
+    font-size: 120px;
+    line-height: 1;
+    color: color-mix(in srgb, var(--c) 9%, transparent);
+    pointer-events: none;
+    user-select: none
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    counter-reset: s
+  }
+
+  @media (max-width:760px) {
+    .steps {
+      grid-template-columns: 1fr
+    }
+  }
+
+  .step {
+    padding: 26px;
+    border-top: 2px solid var(--accent)
+  }
+
+  .step b {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 14px
+  }
+
+  .step h3 {
+    font-size: 24px;
+    margin-bottom: 8px
+  }
+
+  .step p {
+    color: var(--muted)
+  }
+
+  .faq {
+    display: grid;
+    gap: 10px;
+    max-width: 820px
+  }
+
+  details {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 0 22px
+  }
+
+  summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 20px 0;
+    font-weight: 700;
+    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px
+  }
+
+  summary::-webkit-details-marker {
+    display: none
+  }
+
+  summary::after {
+    content: "+";
+    font-family: var(--mono);
+    color: var(--muted);
+    transition: transform .2s
+  }
+
+  details[open] summary::after {
+    transform: rotate(45deg)
+  }
+
+  details p {
+    color: var(--muted);
+    padding-bottom: 20px;
+    max-width: 65ch
+  }
+
+  .final {
+    background: radial-gradient(100% 140% at 100% 0%, var(--violet-deep), var(--surface) 70%);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    padding: clamp(36px, 6vw, 72px);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center
+  }
+
+  .final h2 {
+    font-size: clamp(32px, 4.6vw, 56px);
+    font-weight: 800
+  }
+
+  .final p {
+    opacity: .75;
+    margin-top: 14px;
+    max-width: 46ch
+  }
+
+  @media (max-width:760px) {
+    .final {
+      grid-template-columns: 1fr
+    }
+  }
+
+  footer {
+    padding-block: 40px 110px;
+    color: var(--muted);
+    font-size: 14px
+  }
+
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap
+  }
+
+  /* Track detail page */
+  .detail-hero {
+    padding-block: 44px 40px;
+    border-bottom: 1px solid var(--line);
+    background: radial-gradient(120% 100% at 0% 0%, var(--violet-deep) 0%, transparent 65%), linear-gradient(180deg, color-mix(in srgb, var(--c) 10%, var(--bg)) 0%, var(--bg) 100%)
+  }
+
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    color: var(--muted);
+    text-decoration: none;
+    margin-bottom: 28px
+  }
+
+  .back:hover {
+    color: var(--ink)
+  }
+
+  .detail-hero h1 {
+    font-size: clamp(42px, 6.4vw, 80px);
+    font-weight: 800;
+    letter-spacing: -.035em
+  }
+
+  .detail-hero .lede {
+    font-size: clamp(18px, 2vw, 21px);
+    color: var(--muted);
+    margin-top: 18px;
+    max-width: 52ch
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    margin-top: 36px
+  }
+
+  .fact {
+    background: var(--surface);
+    padding: 18px 20px
+  }
+
+  .fact .eyebrow {
+    font-size: 11px
+  }
+
+  .fact strong {
+    display: block;
+    font-family: var(--display);
+    font-size: 22px;
+    margin-top: 4px;
+    letter-spacing: -.01em
+  }
+
+  @media (max-width:760px) {
+    .facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+
+    .fact strong {
+      font-size: 18px
+    }
+  }
+
+  .detail-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 48px;
+    padding-block: 56px
+  }
+
+  @media (max-width:960px) {
+    .detail-body {
+      grid-template-columns: 1fr
+    }
+  }
+
+  .detail-body h2 {
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 800;
+    margin-bottom: 22px
+  }
+
+  .block+.block {
+    margin-top: 56px
+  }
+
+  .outline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 2px solid var(--line)
+  }
+
+  .outline li {
+    position: relative;
+    padding: 0 0 26px 28px
+  }
+
+  .outline li::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--c)
+  }
+
+  .outline .wk {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--c);
+    font-weight: 500;
+    letter-spacing: .04em
+  }
+
+  .outline h3 {
+    font-size: 21px;
+    margin: 2px 0 6px;
+    letter-spacing: -.01em
+  }
+
+  .outline p {
+    color: var(--muted)
+  }
+
+  .topics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px
+  }
+
+  @media (max-width:560px) {
+    .topics {
+      grid-template-columns: 1fr
+    }
+  }
+
+  .topic {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface)
+  }
+
+  .topic svg {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    color: var(--c);
+    margin-top: 2px
+  }
+
+  .topic span {
+    font-weight: 600
+  }
+
+  .outcomes {
+    display: grid;
+    gap: 12px
+  }
+
+  .outcome {
+    padding: 18px 20px;
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--c) 8%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--c) 20%, var(--line))
+  }
+
+  .outcome strong {
+    font-family: var(--display);
+    font-size: 18px;
+    display: block
+  }
+
+  .outcome span {
+    color: var(--muted);
+    font-size: 15px
+  }
+
+  .rail {
+    position: sticky;
+    top: calc(env(safe-area-inset-top, 0px) + 84px);
+    align-self: start;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 26px;
+    box-shadow: var(--shadow);
+    display: grid;
+    gap: 16px
+  }
+
+  .rail h3 {
+    font-size: 24px
+  }
+
+  .rail p {
+    color: var(--muted);
+    font-size: 15px
+  }
+
+  .rail ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 10px;
+    font-size: 15px
+  }
+
+  .rail li {
+    display: flex;
+    gap: 10px
+  }
+
+  .rail li::before {
+    content: "✓";
+    color: var(--accent-2);
+    font-weight: 800
+  }
+
+  .rail .btn {
+    width: 100%
+  }
+
+  .rail small {
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center
+  }
+
+  @media (max-width:960px) {
+    .rail {
+      position: static
+    }
+  }
+
+  .others {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px
+  }
+
+  @media (max-width:760px) {
+    .others {
+      grid-template-columns: 1fr
+    }
+  }
+
+  .other {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--surface);
+    text-decoration: none;
+    transition: border-color .2s
+  }
+
+  .other:hover {
+    border-color: var(--c)
+  }
+
+  .other strong {
+    font-family: var(--display);
+    font-size: 17px;
+    display: block
+  }
+
+  .other small {
+    color: var(--muted)
+  }
+
+  /* Floating WhatsApp (mobile) */
+  .fab {
+    position: fixed;
+    z-index: 40;
+    left: max(16px, env(safe-area-inset-left, 0px));
+    right: max(16px, env(safe-area-inset-right, 0px));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    display: none
+  }
+
+  .fab .btn {
+    width: 100%;
+    padding: 16px
+  }
+
+  @media (max-width:760px) {
+    .fab {
+      display: block
+    }
+  }
+
+  .view {
+    animation: fade .35s ease both
+  }
+
+  @keyframes fade {
+    from {
+      opacity: .4;
+      transform: translateY(6px)
+    }
+
+    to {
+      opacity: 1;
+      transform: none
+    }
+  }
+
+  @media (prefers-reduced-motion:reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important
+    }
+  }
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Home"><span class="logo-mark">&lt;/&gt;</span>Stack</a>
+    <nav class="nav-links">
+      <a href="#tracks">Tracks</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-wa btn-sm" data-wa="general" href="#">Chat on WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<div class="fab"><a class="btn btn-wa" data-wa="general" href="#" id="fab-link">Chat on WhatsApp</a></div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Stack (Pvt) Ltd. SECP-registered company. All rights reserved.</span>
+    <span>Questions? Message us on WhatsApp.</span>
+  </div>
+</footer>
+
+<script>
+  /* ===== Settings: put your WhatsApp number here (country code + number, digits only, e.g. 923001234567) ===== */
+  const WHATSAPP_NUMBER = "923390086967";
+
+  const WA_ICON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.86 9.86 0 0 0 12.04 2Zm5.8 14.04c-.24.68-1.42 1.3-1.96 1.34-.5.05-.97.23-3.27-.68-2.77-1.09-4.52-3.93-4.66-4.11-.13-.18-1.11-1.48-1.11-2.82 0-1.34.7-2 .95-2.27.25-.27.54-.34.72-.34h.52c.17 0 .39-.06.61.47.24.56.79 1.92.86 2.06.07.14.11.3.02.48-.09.18-.14.3-.27.46-.14.16-.29.35-.41.47-.14.14-.28.29-.12.56.16.27.71 1.17 1.52 1.89 1.04.93 1.92 1.22 2.19 1.35.27.14.43.11.59-.07.16-.18.68-.79.86-1.07.18-.27.36-.23.61-.14.25.09 1.58.75 1.85.88.27.14.45.2.52.32.07.11.07.66-.17 1.32Z"/></svg>';
+  const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+
+  const ICONS = {
+    web: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>',
+    ai: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="12" cy="12" r="2.4"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M6.7 7.2 10 10.5M6.7 16.8 10 13.5M14 10.5l3.3-3.3M14 13.5l3.3 3.3"/></svg>',
+    video: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 9h18M8 5v4M13 5v4M10 12.5v4l3.5-2z"/></svg>',
+    agent: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M2 13v2M22 13v2"/></svg>'
+  };
+
+  const TRACKS = [
+    {
+      id: "web-development", key: "web", name: "Web Development", glyph: "</>",
+      color: "--web", duration: "6 months", hours: "8–10 hrs/week", level: "Beginner friendly", mode: "Online or on-site",
+      short: "Go from zero to building and deploying full-stack web apps that look good and actually work.",
+      lede: "Learn to build modern websites and web apps from scratch. You'll write real code from week one, ship projects to the internet, and finish with a portfolio that shows clients and employers what you can do.",
+      tags: ["HTML & CSS", "JavaScript", "React", "Node.js", "Databases"],
+      outline: [
+        ["Month 1", "Web foundations: HTML & CSS", "How the web works, semantic HTML, modern CSS, Flexbox, Grid, and responsive design."],
+        ["Month 2", "JavaScript fundamentals", "Variables, functions, arrays and objects, the DOM, events, and async code with fetch."],
+        ["Month 3", "Git, tooling & React", "Git and GitHub workflow, Tailwind CSS, then React components, state, hooks, and routing."],
+        ["Month 4", "Back end with Node.js", "Node.js and Express, REST APIs, authentication, and handling user data securely."],
+        ["Month 5", "Databases & deployment", "PostgreSQL and MongoDB, connecting full-stack apps, and deploying them live."],
+        ["Month 6", "Capstone & career prep", "Build and launch a full-stack app, polish your portfolio, and prepare for interviews and freelance work."]
+      ],
+      topics: ["Responsive design with Flexbox & Grid", "Modern JavaScript (ES6+)", "React & component thinking", "Tailwind CSS", "REST APIs with Node & Express", "SQL and NoSQL databases", "User login & authentication", "Deploying to Vercel & cloud hosts"],
+      outcomes: [
+        ["A live portfolio", "3+ deployed projects with your own domain-ready portfolio site."],
+        ["Job & freelance ready", "Skills for junior developer roles or paid client websites."],
+        ["A real capstone", "One full-stack app built end to end that you can demo."]
+      ]
+    },
+    {
+      id: "ai-development", key: "ai", name: "AI Development", glyph: "∑",
+      color: "--ai", duration: "6 months", hours: "8–10 hrs/week", level: "Beginner friendly", mode: "Online or on-site",
+      short: "Build apps powered by machine learning and large language models, from Python basics to deployed AI products.",
+      lede: "Learn how modern AI actually works and how to build with it. You'll go from Python and data basics to machine learning, LLMs, and retrieval systems, and ship AI apps people can use.",
+      tags: ["Python", "Machine Learning", "LLMs", "RAG", "APIs"],
+      outline: [
+        ["Month 1", "Python for AI", "Python essentials, NumPy, pandas, and cleaning and exploring real data."],
+        ["Month 2", "Machine learning fundamentals", "Regression, classification, clustering, and evaluating models with scikit-learn."],
+        ["Month 3", "Deep learning", "Neural networks with PyTorch, plus computer vision and text models."],
+        ["Month 4", "Working with LLMs", "LLM APIs, prompt engineering, structured outputs, and managing cost."],
+        ["Month 5", "RAG & vector databases", "Embeddings, vector search, and AI that answers from your own documents."],
+        ["Month 6", "Ship it + capstone", "Serve models with FastAPI, build a UI, deploy, and present a capstone AI product."]
+      ],
+      topics: ["Python, NumPy & pandas", "Supervised & unsupervised learning", "Neural networks with PyTorch", "Prompt engineering", "LLM APIs (OpenAI, Claude, open models)", "Embeddings & vector databases", "Retrieval-augmented generation (RAG)", "Deploying AI apps with FastAPI"],
+      outcomes: [
+        ["AI apps in your portfolio", "Chatbots, document Q&A, and prediction apps you built yourself."],
+        ["Understand the models", "Know when to use classic ML, deep learning, or an LLM."],
+        ["Production basics", "Deploy, monitor, and control the cost of AI features."]
+      ]
+    },
+    {
+      id: "agentic-ai", key: "agent", name: "Agentic AI", glyph: "{ }",
+      color: "--agent", duration: "6 months", hours: "8–10 hrs/week", level: "Beginner friendly", mode: "Online or on-site",
+      short: "Build AI agents that plan, use tools, and get real work done for businesses on their own.",
+      lede: "Go beyond chatbots. Learn to build AI agents that call tools, browse, write code, and automate whole workflows, the skill businesses are scrambling to hire for right now.",
+      tags: ["AI Agents", "Tool Calling", "MCP", "Multi-agent", "Automation"],
+      outline: [
+        ["Month 1", "Python & LLM foundations", "Python from scratch, how LLMs work, using APIs, and prompting for reliable outputs."],
+        ["Month 2", "Agents & tool calling", "The agent loop, function calling, structured outputs, and when an agent beats a prompt."],
+        ["Month 3", "MCP, memory & knowledge", "Connect agents to apps and data with MCP, add memory, and use RAG for context."],
+        ["Month 4", "Multi-agent systems", "Orchestrators, sub-agents, and frameworks like LangGraph."],
+        ["Month 5", "Automation, evals & guardrails", "Business automation with n8n, testing agents, and keeping humans in the loop."],
+        ["Month 6", "Capstone: a business agent", "Build, deploy, and monitor an agent that solves a real business task."]
+      ],
+      topics: ["The agent loop & planning", "Function and tool calling", "Model Context Protocol (MCP)", "LangGraph & agent frameworks", "n8n workflow automation", "Agent memory & RAG", "Evaluations & guardrails", "Deploying and monitoring agents"],
+      outcomes: [
+        ["Working agents", "Agents that handle support, research, or ops tasks end to end."],
+        ["Sell automation", "Offer AI automation services to businesses and clients."],
+        ["Future-proof skills", "Understand the stack that's changing how software gets built."]
+      ]
+    }
+  ];
+
+  const STEPS = [
+    ["Message us on WhatsApp", "Tap any button on this page. Tell us which track you're interested in."],
+    ["Get a free consultation", "We'll help you pick the right track for your goals and current level."],
+    ["Start learning", "Join the next batch and start building real projects from week one."]
+  ];
+
+  const FAQ = [
+    ["Do I need any experience?", "No. Every track starts from the basics, so you can join with zero coding experience. AI Development and Agentic AI both teach Python from scratch in month one. Not sure which track fits you? Message us and we'll help you choose."],
+    ["Is it online or in person?", "Both. Every track is mentor-led and runs online and in person, so you can pick what suits you. Message us on WhatsApp for batch timings and the class location."],
+    ["Will I get a certificate?", "Yes. When you complete the track and your capstone project, you'll receive a certificate from Stack (Pvt) Ltd, a company registered with the SECP."],
+    ["How much does it cost?", "Fees depend on the batch and any current offers. Message us on WhatsApp and we'll share the latest details."],
+    ["Can I take more than one track?", "Yes. A popular path is AI Development followed by Agentic AI. Web Development pairs well with either."]
+  ];
+
+  /* ===== helpers ===== */
+  const $app = document.getElementById("app");
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  function waLink(track) {
+    const msg = track
+      ? `Hi! I'm interested in the ${track.name} track (${track.duration}). Can you share details about the next batch?`
+      : "Hi! I'd like to know more about your career tracks.";
+    const base = WHATSAPP_NUMBER ? `https://wa.me/${WHATSAPP_NUMBER}` : "https://wa.me/";
+    return `${base}?text=${encodeURIComponent(msg)}`;
+  }
+  function waBtn(label, track, extra = "") {
+    return `<a class="btn btn-wa ${extra}" href="${waLink(track)}" target="_blank" rel="noopener">${WA_ICON}${esc(label)}</a>`;
+  }
+  const cvar = t => `--c:var(${t.color})`;
+
+  /* ===== views ===== */
+  function home() {
+    return `<div class="view">
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Web · AI · Agents</p>
+        <h1 style="margin-top:18px">Stop watching tutorials. Start building <span class="hl">skills that pay.</span></h1>
+        <p class="hero-sub">Mentor-led career tracks where you build real projects, grow a portfolio, and get ready for jobs and freelance clients.</p>
+        <div class="hero-ctas">
+          ${waBtn("Get free career advice", null)}
+          <a class="btn btn-ghost" href="#tracks">Explore the tracks</a>
+        </div>
+        <div class="hero-meta">
+          <span><i></i>6-month programs</span>
+          <span><i></i>Real-world projects</span>
+          <span><i></i>Online or in person</span>
+          <span><i></i>Mentor-led classes</span>
+          <span><i></i>Certificate on completion</span>
+        </div>
+      </div>
+      <div class="board" aria-label="Career tracks">
+        <div class="board-head"><span class="eyebrow">Choose your track</span><span class="eyebrow">Duration</span></div>
+        ${TRACKS.map(t => `
+          <a class="board-row" href="#${t.id}" style="${cvar(t)}">
+            <span class="chip">${ICONS[t.key]}</span>
+            <span style="min-width:0"><strong>${esc(t.name)}</strong><small>${esc(t.level)}</small></span>
+            <span class="dur">${esc(t.duration)}</span>
+          </a>`).join("")}
+      </div>
+    </div>
+  </section>
+
+  <section id="tracks" style="padding-top:24px">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Three tracks.<br>One goal: get you hired.</h2>
+        <p>Each track is a 6-month structured path with monthly milestones, hands-on projects, and a capstone you can show employers and clients.</p>
+      </div>
+      <div class="tracks">
+        ${TRACKS.map(t => `
+          <a class="card" href="#${t.id}" style="${cvar(t)}">
+            <span class="card-glyph" aria-hidden="true">${esc(t.glyph)}</span>
+            <div class="card-top"><span class="chip">${ICONS[t.key]}</span><span class="dur">${esc(t.duration)}</span></div>
+            <h3>${esc(t.name)}</h3>
+            <p>${esc(t.short)}</p>
+            <div class="tags">${t.tags.map(x => `<span class="tag">${esc(x)}</span>`).join("")}</div>
+            <span class="more">See the full outline <span>→</span></span>
+          </a>`).join("")}
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head"><h2>How to get started</h2></div>
+      <div class="steps">
+        ${STEPS.map((s, i) => `<div class="step"><b>Step ${i + 1}</b><h3>${esc(s[0])}</h3><p>${esc(s[1])}</p></div>`).join("")}
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head"><h2>Questions</h2></div>
+      <div class="faq">
+        ${FAQ.map(f => `<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></details>`).join("")}
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:24px">
+    <div class="wrap">
+      <div class="final">
+        <div>
+          <h2>Your next skill is one message away.</h2>
+          <p>Tell us where you are today and where you want to be. We'll point you to the right track.</p>
+        </div>
+        ${waBtn("Message us on WhatsApp", null)}
+      </div>
+    </div>
+  </section>
+  </div>`;
+  }
+
+  function detail(t) {
+    const others = TRACKS.filter(x => x !== t);
+    return `<div class="view" style="${cvar(t)}">
+  <section class="detail-hero">
+    <div class="wrap">
+      <a class="back" href="#tracks">← All tracks</a>
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+        <span class="chip">${ICONS[t.key]}</span><span class="eyebrow">Career track</span>
+      </div>
+      <h1>${esc(t.name)}</h1>
+      <p class="lede">${esc(t.lede)}</p>
+      <div class="hero-ctas">${waBtn("Ask about this track", t)}</div>
+      <div class="facts">
+        <div class="fact"><span class="eyebrow">Duration</span><strong>${esc(t.duration)}</strong></div>
+        <div class="fact"><span class="eyebrow">Time</span><strong>${esc(t.hours)}</strong></div>
+        <div class="fact"><span class="eyebrow">Level</span><strong>${esc(t.level)}</strong></div>
+        <div class="fact"><span class="eyebrow">Format</span><strong>${esc(t.mode)}</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="detail-body">
+      <div style="min-width:0">
+        <div class="block">
+          <h2>Course outline</h2>
+          <ol class="outline">
+            ${t.outline.map(o => `<li><span class="wk">${esc(o[0])}</span><h3>${esc(o[1])}</h3><p>${esc(o[2])}</p></li>`).join("")}
+          </ol>
+        </div>
+        <div class="block">
+          <h2>What you'll learn</h2>
+          <div class="topics">${t.topics.map(x => `<div class="topic">${CHECK}<span>${esc(x)}</span></div>`).join("")}</div>
+        </div>
+        <div class="block">
+          <h2>Where you'll be at the end</h2>
+          <div class="outcomes">${t.outcomes.map(o => `<div class="outcome"><strong>${esc(o[0])}</strong><span>${esc(o[1])}</span></div>`).join("")}</div>
+        </div>
+      </div>
+      <aside class="rail">
+        <span class="eyebrow">Next batch</span>
+        <h3>Ready to start ${esc(t.name)}?</h3>
+        <p>Message us on WhatsApp for batch dates and a free consultation.</p>
+        <ul>
+          <li>${esc(t.duration)} structured program</li>
+          <li>Hands-on projects every module</li>
+          <li>Capstone + certificate</li>
+        </ul>
+        ${waBtn("Chat on WhatsApp", t)}
+        <small>We usually reply within a few hours.</small>
+      </aside>
+    </div>
+
+    <section style="padding-top:0">
+      <h2 style="font-size:28px;margin-bottom:18px">Explore other tracks</h2>
+      <div class="others">
+        ${others.map(o => `<a class="other" href="#${o.id}" style="${cvar(o)}"><span class="chip">${ICONS[o.key]}</span><span><strong>${esc(o.name)}</strong><small>${esc(o.duration)}</small></span></a>`).join("")}
+      </div>
+    </section>
+  </div>
+  </div>`;
+  }
+
+  /* ===== router ===== */
+  const SECTIONS = ["top", "tracks", "how", "faq"];
+  function setWa(track) {
+    document.querySelectorAll('[data-wa]').forEach(a => {
+      a.href = waLink(track); a.target = "_blank"; a.rel = "noopener";
+      if (!a.querySelector("svg")) a.insertAdjacentHTML("afterbegin", WA_ICON);
+    });
+  }
+  let current = null;
+  function route() {
+    const h = location.hash.replace("#", "");
+    const t = TRACKS.find(x => x.id === h);
+    if (t) {
+      if (current !== t.id) { $app.innerHTML = detail(t); current = t.id; }
+      window.scrollTo({ top: 0 });
+      document.title = `${t.name} · Career Tracks`;
+      setWa(t);
+      return;
+    }
+    if (current !== "home") { $app.innerHTML = home(); current = "home"; }
+    document.title = "Career Tracks";
+    setWa(null);
+    const target = SECTIONS.includes(h) && h !== "top" ? document.getElementById(h) : null;
+    if (target) target.scrollIntoView(); else if (h === "top" || !h) window.scrollTo({ top: 0 });
+  }
+  window.addEventListener("hashchange", route);
+  route();
+</script>
